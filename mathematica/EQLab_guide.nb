@@ -1,0 +1,725 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     30629,        717]
+NotebookOptionsPosition[     26508,        632]
+NotebookOutlinePosition[     26904,        648]
+CellTagsIndexPosition[     26861,        645]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["EQLab package quick guide. ", "Title",
+ CellChangeTimes->{{3.867993942228428*^9, 3.867993951117114*^9}, {
+  3.867994717071836*^9, 3.867994718761093*^9}, {3.868013894855041*^9, 
+  3.868013916720097*^9}, {3.868014840502892*^9, 3.868014842882325*^9}},
+ FontSize->36,ExpressionUUID->"05eb7eb7-37b8-47f3-8792-ff4a794b506a"],
+
+Cell["\<\
+
+Useful Info\
+\>", "Subtitle",
+ CellChangeTimes->{{3.868014470360198*^9, 3.8680145037944107`*^9}, {
+   3.8680292314812098`*^9, 3.868029395379233*^9}, {3.868029434227049*^9, 
+   3.868029635005287*^9}, {3.86802967698798*^9, 3.868029711518064*^9}, {
+   3.868029744537092*^9, 3.8680297754347143`*^9}, {3.868029822933708*^9, 
+   3.8680301979179688`*^9}, {3.868030255994999*^9, 3.8680303289362392`*^9}, {
+   3.868030397405065*^9, 3.86803064176755*^9}, 3.868030672329624*^9, {
+   3.868030822470519*^9, 3.868030839748783*^9}, {3.8680308794145203`*^9, 
+   3.868030882601823*^9}, {3.86803107116189*^9, 3.868031079735796*^9}, {
+   3.868033948137206*^9, 3.868033951787451*^9}, {3.868033992456641*^9, 
+   3.868033995351027*^9}, {3.8680340806799717`*^9, 3.868034088348342*^9}, {
+   3.868034119862247*^9, 3.868034125823702*^9}},
+ FontColor->RGBColor[
+  0.22584878309300374`, 0.4608987563897154, 
+   0.9291523613336385],ExpressionUUID->"4daa3a20-c068-4a54-b419-915252edccab"],
+
+Cell[TextData[{
+ "\n1) Some definitions:\n\n1.1) USER         \[Rule]    one of us, someone \
+who runs this package.\n\n1.2) predictor \[Rule] an expert, a person whose \
+behaviour/belief we try to model\n\n1.3) question  \[Rule]  a  basic  \
+\[OpenCurlyQuote]unit\[CloseCurlyQuote] in an experiment, indexed by \
+\[OpenCurlyQuote]i\[CloseCurlyQuote].  Asking a question (fixed i) is  step \
+that involves producing:\n\ta) forecasts  ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", "ij"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "17f8573b-1112-400b-b7ef-a0c4964e40cb"],
+ " for each predictor ( for all values of   j )\n\tb) a measurement ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["m", "i"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "60800270-4fdc-4c4a-a647-eb89ee282651"],
+ " (like tossing a die)\n\tc) resolutions ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["v", "ij"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "8774a6de-0f7b-4fbd-a1da-ac5f5f9a9d31"],
+ " for each predictor  ( for all values of   j ) \n\td) outcome ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["q", "i"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "e19912b6-3ab0-415a-a9ab-b80b815ffd68"],
+ " ( this reflects the resolution of the majority of predictors  )\n\te) \
+surprisals ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["s", "ij"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "cfbc352b-6c70-4344-be84-f634f0e1b232"],
+ " for each predictor  ( for all values of   j ) \n\tf)  rewards ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "ij"], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "ca7206dc-7b80-4502-a9ec-deffb06e7dcf"],
+ "  for each predictor  ( for all values of   j )  \n\tA question is stored \
+in EQLab as a List :  ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["question", "i"], "=", 
+    RowBox[{"{", 
+     RowBox[{
+      StyleBox[
+       SubscriptBox["p", "i"],
+       FontWeight->"Bold"], ",", 
+      SubscriptBox["m", "i"]}]}]}], TraditionalForm]],
+  FormatType->TraditionalForm,ExpressionUUID->
+  "fddbb044-4c1c-4a58-b307-291ed1f2bcd9"],
+ ",",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["v", "i"], TraditionalForm]],
+  FormatType->TraditionalForm,
+  FontWeight->"Bold",ExpressionUUID->"2c9b6a93-9044-47d1-b070-3bdcbc0c5825"],
+ ",q,",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["s", "i"], TraditionalForm]],
+  FormatType->TraditionalForm,
+  FontWeight->"Bold",ExpressionUUID->"f2c835ca-a65a-4a0d-9f79-4d2a88e2eb01"],
+ ",",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["r", "i"], TraditionalForm]],
+  FormatType->TraditionalForm,
+  FontWeight->"Bold",ExpressionUUID->"a5010fdd-b0a4-4557-b994-4457914e0d33"],
+ "};  Where bold letters are each a List\n\t\n1.4) Experiment \[Rule] a set \
+of questions asked in sequence (stored as a List of questions)\n\n2)Some \
+variable definitions:\n\n2.1) npredictors \[Rule]  number of  predictors  (",
+ StyleBox["cannot",
+  FontSlant->"Italic"],
+ " be modified after loading EQLab )\n         nquestions \[Rule]  number of  \
+questions for each experiment (can be modified in between experiments)\n\n\
+2.2) npredictorsUSER \[Rule]   number of  predictors, to be defined by user \
+",
+ StyleBox["before  loading EQLab. (have no effect after loading)",
+  FontWeight->"Bold"],
+ "\n         "
+}], "Text",
+ CellChangeTimes->{{3.868014470360198*^9, 3.8680145037944107`*^9}, {
+   3.8680292314812098`*^9, 3.868029395379233*^9}, {3.868029434227049*^9, 
+   3.868029635005287*^9}, {3.86802967698798*^9, 3.868029711518064*^9}, {
+   3.868029744537092*^9, 3.8680297754347143`*^9}, {3.868029822933708*^9, 
+   3.8680301979179688`*^9}, {3.868030255994999*^9, 3.8680303289362392`*^9}, {
+   3.868030397405065*^9, 3.86803064176755*^9}, 3.868030672329624*^9, {
+   3.868030822470519*^9, 3.868030857855207*^9}, {3.868030926217949*^9, 
+   3.868030933513199*^9}, {3.868032083082469*^9, 3.868032300666402*^9}, {
+   3.868032931783168*^9, 3.868032976620973*^9}, {3.8680346562354097`*^9, 
+   3.868034759037023*^9}, {3.868034789296814*^9, 3.8680348571780663`*^9}},
+ FontSize->16,
+ FontWeight->"Regular",
+ FontColor->RGBColor[
+  0., 0., 0.],ExpressionUUID->"c90bb2f2-aba9-4612-8799-7f58e9d9bd43"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+Steps to prepare simulations\
+\>", "Subtitle",
+ CellChangeTimes->{{3.868014470360198*^9, 3.8680145037944107`*^9}, {
+   3.8680292314812098`*^9, 3.868029395379233*^9}, {3.868029434227049*^9, 
+   3.868029635005287*^9}, {3.86802967698798*^9, 3.868029711518064*^9}, {
+   3.868029744537092*^9, 3.8680297754347143`*^9}, {3.868029822933708*^9, 
+   3.8680301979179688`*^9}, {3.868030255994999*^9, 3.8680303289362392`*^9}, {
+   3.868030397405065*^9, 3.86803064176755*^9}, 3.868030672329624*^9, {
+   3.868030822470519*^9, 3.868030839748783*^9}, {3.8680308794145203`*^9, 
+   3.868030882601823*^9}, {3.86803107116189*^9, 3.868031079735796*^9}, {
+   3.868033948137206*^9, 3.868033951787451*^9}, {3.868033992456641*^9, 
+   3.868033995351027*^9}, {3.8680340806799717`*^9, 3.868034088348342*^9}},
+ FontColor->RGBColor[
+  0.22584878309300374`, 0.4608987563897154, 
+   0.9291523613336385],ExpressionUUID->"815c0808-60ba-479e-972a-96415d568670"],
+
+Cell[CellGroupData[{
+
+Cell["Set user parameter values", "ItemNumbered",
+ AutoGeneratedPackage->Automatic,
+ InitializationCell->True,
+ CellChangeTimes->{{3.86782665299482*^9, 3.867826679658079*^9}, {
+  3.867826719872582*^9, 3.867826760863641*^9}, {3.867826913164385*^9, 
+  3.867826914181082*^9}, {3.867827096234043*^9, 3.8678271014739943`*^9}, {
+  3.86782794336696*^9, 3.8678279459413233`*^9}, {3.867987287971356*^9, 
+  3.867987307489421*^9}, {3.8679876329387283`*^9, 3.867987638418292*^9}, {
+  3.8679876868678417`*^9, 3.8679877304102716`*^9}, {3.86798777037665*^9, 
+  3.8679877752967453`*^9}, {3.868013752694839*^9, 3.868013753846147*^9}, {
+  3.8680139485300827`*^9, 3.8680139589451933`*^9}, {3.868014754659335*^9, 
+  3.8680147914081383`*^9}, {3.86803073862354*^9, 3.8680307404667177`*^9}, {
+  3.868034888682641*^9, 3.86803489540554*^9}},
+ FontSize->18,ExpressionUUID->"2c380773-383e-4837-8b42-8cb8c13ee754"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"npredictorsUSER", "=", "10"}], ";"}]], "Input",
+ CellChangeTimes->{{3.8679947284439096`*^9, 3.867994734547039*^9}, {
+  3.867994778122652*^9, 3.867994785133916*^9}, {3.867994888856707*^9, 
+  3.8679948956055193`*^9}, {3.86803487989326*^9, 3.8680349121836042`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"104257b5-d17f-4278-950c-73da9a07e689"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Load package (modify second argument in function \[OpenCurlyQuote]Join\
+\[CloseCurlyQuote] to match your working directory)\
+\>", "ItemNumbered",
+ AutoGeneratedPackage->Automatic,
+ InitializationCell->True,
+ CellChangeTimes->{{3.86782665299482*^9, 3.867826679658079*^9}, {
+  3.867826719872582*^9, 3.867826760863641*^9}, {3.867826913164385*^9, 
+  3.867826914181082*^9}, {3.867827096234043*^9, 3.8678271014739943`*^9}, {
+  3.86782794336696*^9, 3.8678279459413233`*^9}, {3.867987287971356*^9, 
+  3.867987307489421*^9}, {3.8679876329387283`*^9, 3.867987638418292*^9}, {
+  3.8679876868678417`*^9, 3.8679877304102716`*^9}, {3.86798777037665*^9, 
+  3.8679877752967453`*^9}, {3.868013752694839*^9, 3.868013753846147*^9}, {
+  3.8680139485300827`*^9, 3.8680139589451933`*^9}, {3.868014754659335*^9, 
+  3.8680147914081383`*^9}, {3.86803073862354*^9, 3.8680307404667177`*^9}},
+ FontSize->18,ExpressionUUID->"8ecdf519-4836-4b51-94eb-f604fa272ac3"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"$Path", "=", 
+   RowBox[{"Join", "[", 
+    RowBox[{"$Path", ",", 
+     RowBox[{"{", "\"\</Users/jogh/research/ExQuareum\>\"", "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"<<", "EQLab`"}]}], "Input",
+ CellChangeTimes->{{3.8679947284439096`*^9, 3.867994734547039*^9}, {
+  3.867994778122652*^9, 3.867994785133916*^9}, {3.867994888856707*^9, 
+  3.8679948956055193`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"dbaa4763-9e92-4921-a592-388485469b04"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Define functions needed for experiment. Needs the follow the prototypes below:\
+\>", "ItemNumbered",
+ AutoGeneratedPackage->Automatic,
+ InitializationCell->True,
+ CellChangeTimes->{{3.86782665299482*^9, 3.867826679658079*^9}, {
+  3.867826719872582*^9, 3.867826760863641*^9}, {3.867826913164385*^9, 
+  3.867826914181082*^9}, {3.867827096234043*^9, 3.8678271014739943`*^9}, {
+  3.86782794336696*^9, 3.8678279459413233`*^9}, {3.867987287971356*^9, 
+  3.867987307489421*^9}, {3.8679876329387283`*^9, 3.867987638418292*^9}, {
+  3.8679876868678417`*^9, 3.8679877304102716`*^9}, {3.86798777037665*^9, 
+  3.8679877752967453`*^9}, {3.868013752694839*^9, 3.868013753846147*^9}, {
+  3.8680139485300827`*^9, 3.868013991831698*^9}, {3.86801404198838*^9, 
+  3.8680140613328047`*^9}, {3.8680311048170223`*^9, 3.868031112637453*^9}, {
+  3.868031240584084*^9, 3.868031255445793*^9}},
+ FontSize->18,ExpressionUUID->"e0be0854-b48b-4be7-b681-6238fe28bdab"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+UserPredict[exp_]       \[Rule]  Function should return a List of numbers \
+(forecasts) of size \[OpenCurlyQuote]npredictors\[CloseCurlyQuote] ;    \
+\[OpenCurlyQuote]exp\[CloseCurlyQuote]  is  an experiment as defined in EQLab \
+and it is useful if predictors update their forecast based on previous \
+questions (as in this example).\
+\>", "SubitemNumbered",
+ AutoGeneratedPackage->Automatic,
+ InitializationCell->True,
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQAWIQPfHqfGvvi28c//B9tQPRhm9+O4PoT4ukPUH0EifV
+GBCdc9oVTHvUsheD6G9a68G08r7Xd0B0kLzdXRAdKfp/1UwgHbYyfy2IFuCS
+uwailyWdBdMxR2/fAdGfFHwfgegWXp/nIPpD3UswLW8jNn0ZkF4sbA2mC75N
+WA+if0blbwPRP7YeOgCiixINToPolYuOXAPRi/4+ANMZyxLugOiys4r3QXRH
+tLnYeiDddmQdmD70lVULRGtXFOmC6JLy/ZtAdLNy2TYQfSu9ezeI3nS66xiI
+3iAYeAlEXyvWewKiC5uj/4Fo3YDjzBuANAAVjrzP
+  "],
+ FontSize->18,ExpressionUUID->"14c50d1c-1317-41d6-ac8c-64c1aafdc7c1"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"forecastinit", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{"Random", "[", "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "npredictors"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"UserPredict", "[", "exp_", "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"M", "=", "1"}], ",", "ipredictor", ",", 
+      RowBox[{"n", "=", 
+       RowBox[{"(", 
+        RowBox[{"exp", "//", "Length"}], ")"}]}], ",", "\[Rho]new", ",", 
+      "\[Rho]", ",", "m", ",", 
+      RowBox[{"RHOnew", "=", 
+       RowBox[{"{", "}"}]}]}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"ipredictor", "=", "1"}], ",", 
+       RowBox[{"ipredictor", "\[LessEqual]", "npredictors"}], ",", 
+       RowBox[{"ipredictor", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"n", "\[Equal]", "0"}], ",", 
+          RowBox[{"\[Rho]new", "=", 
+           RowBox[{"forecastinit", "[", 
+            RowBox[{"[", "ipredictor", "]"}], "]"}]}], ",", 
+          RowBox[{
+           RowBox[{"\[Rho]", "=", 
+            RowBox[{"exp", "[", 
+             RowBox[{"[", 
+              RowBox[{"n", ",", "1", ",", "ipredictor"}], "]"}], "]"}]}], ";", 
+           RowBox[{"m", "=", 
+            RowBox[{"exp", "[", 
+             RowBox[{"[", 
+              RowBox[{"n", ",", "2"}], "]"}], "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"\[Rho]new", "=", 
+            RowBox[{
+             FractionBox["1", 
+              RowBox[{"2", " ", 
+               RowBox[{"(", 
+                RowBox[{"M", "+", "n"}], ")"}]}]], "+", 
+             FractionBox["m", 
+              RowBox[{"2", " ", 
+               RowBox[{"(", 
+                RowBox[{"M", "+", "n"}], ")"}]}]], "+", 
+             FractionBox[
+              RowBox[{
+               RowBox[{"(", 
+                RowBox[{
+                 RowBox[{"-", "1"}], "+", "M", "+", "n"}], ")"}], " ", 
+               "\[Rho]"}], 
+              RowBox[{"M", "+", "n"}]]}]}], ";"}]}], "]"}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"AppendTo", "[", 
+         RowBox[{"RHOnew", ",", "\[Rho]new"}], "]"}], ";"}]}], "]"}], ";", 
+     "\[IndentingNewLine]", "RHOnew"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.868031368495118*^9, 3.868031388424041*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"4fe9d508-a531-493c-b8fc-57b40eb9e83f"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+UserMeasure[] \t      \[Rule]    Function should return either    +1 or -1.  \
+(yes or no, like the toss of a die.)\
+\>", "SubitemNumbered",
+ AutoGeneratedPackage->Automatic,
+ InitializationCell->True,
+ CellChangeTimes->{{3.86782665299482*^9, 3.867826679658079*^9}, {
+  3.867826719872582*^9, 3.867826760863641*^9}, {3.867826913164385*^9, 
+  3.867826914181082*^9}, {3.867827096234043*^9, 3.8678271014739943`*^9}, {
+  3.86782794336696*^9, 3.8678279459413233`*^9}, {3.867987287971356*^9, 
+  3.867987307489421*^9}, {3.8679876329387283`*^9, 3.867987638418292*^9}, {
+  3.8679876868678417`*^9, 3.8679877304102716`*^9}, {3.86798777037665*^9, 
+  3.8679877752967453`*^9}, {3.868013752694839*^9, 3.868013753846147*^9}, {
+  3.8680139485300827`*^9, 3.868014033261454*^9}, {3.868014196962494*^9, 
+  3.868014260927981*^9}, {3.8680310996495333`*^9, 3.8680311357814417`*^9}, {
+  3.868031417053814*^9, 3.868031461965651*^9}, {3.868031567875494*^9, 
+  3.8680315680024137`*^9}, {3.868032829030826*^9, 3.868032853982286*^9}, {
+  3.8680331086478*^9, 3.868033125517929*^9}},
+ FontSize->18,ExpressionUUID->"98c69957-6c92-47fe-8faa-91cfe7e48b54"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"prob", "=", 
+   RowBox[{"7", "/", "10"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"UserMeasure", "[", "]"}], ":=", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"Random", "[", "]"}], "//", 
+     RowBox[{
+      RowBox[{"Which", "[", 
+       RowBox[{
+        RowBox[{"#", "<", "prob"}], ",", "1", ",", "True", ",", 
+        RowBox[{"-", "1"}]}], "]"}], "&"}]}], ")"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.868015772478166*^9, 3.868015788851966*^9}},
+ CellLabel->"In[6]:=",ExpressionUUID->"da7b29eb-a6d4-4190-96c5-1c87d20f9f6d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+UserResolve[exp_ , newquestion_]  \t      \[Rule]    Function should use the \
+List  \[OpenCurlyQuote]newquestion[[2]]\[CloseCurlyQuote] ( forecasts), and  \
+return a List of numbers (resolutions) of the same size.  Arguments are   an \
+experiment  and a question  as defined in EQLab. The variable \
+\[OpenCurlyQuote]exp\[CloseCurlyQuote] is useful only when modeling \
+predictors that use knowledge from previous  questions in the experiment. \
+Even If \[OpenCurlyQuote]exp\[CloseCurlyQuote] is not used, the function must \
+adhere to the  prototype. \
+\>", "SubitemNumbered",
+ AutoGeneratedPackage->Automatic,
+ InitializationCell->True,
+ CellChangeTimes->CompressedData["
+1:eJxTTMoPSmViYGAQBmIQPfHqfGvvi28c//B9tQPRhm9+O4PoT4ukPUH0EifV
+GBCdc9oVTHvUsheD6G9a68G08r7Xd0B0kLzdXRAdKfp/1UwgHbYyfy2IFuCS
+uwailyWdBdMxR2/fAdGfFHwfgegWXp/nIPpD3UswLW8jNn0ZkF4sbA2mC75N
+WA+iMy7Y7QTRDYLfroLoC1I/boFoY27pByB6X8C+ZyCaI0zAdz2QFuvRCwbR
+05T/h4HoXxaz40H0n5TJKSD6hNOXGhDd6LtXYAOQltAUkgXRGzlva4LoMw/Z
+DUF0k/kjE7D4z3tBIBoAqHGuBg==
+  "],
+ FontSize->18,ExpressionUUID->"ce39e2dd-d27d-4041-97ce-01384059f0af"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"UserResolve", "[", 
+    RowBox[{"experiment_", ",", "question_"}], "]"}], ":=", 
+   RowBox[{"UserResolve", "[", "question", "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"UserResolve", "[", "question_", "]"}], ":=", 
+  RowBox[{"Table", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Random", "[", "]"}], "//", 
+     RowBox[{
+      RowBox[{"Which", "[", 
+       RowBox[{
+        RowBox[{"#", "<", "0.0"}], ",", 
+        RowBox[{"-", 
+         RowBox[{"question", "[", 
+          RowBox[{"[", "2", "]"}], "]"}]}], ",", "True", ",", 
+        RowBox[{"question", "[", 
+         RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "&"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "1", ",", 
+      RowBox[{
+       RowBox[{"question", "[", 
+        RowBox[{"[", "1", "]"}], "]"}], "//", "Length"}]}], "}"}]}], 
+   "]"}]}]}], "Input",
+ CellChangeTimes->{
+  3.867995715270417*^9, {3.867995789449353*^9, 3.867995861909285*^9}, 
+   3.867998089146513*^9, {3.867998706636016*^9, 3.8679987066978493`*^9}, {
+   3.867999509266079*^9, 3.867999515285673*^9}, {3.8680001830375843`*^9, 
+   3.8680001845255957`*^9}, 3.8680063510636*^9, 3.868012692405677*^9, {
+   3.86801458480208*^9, 3.868014649466714*^9}, {3.868014691930299*^9, 
+   3.868014703453135*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"8a7a3bea-6296-4865-8d70-e6ebeaf24440"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+
+Perform Experiments\
+\>", "Subtitle",
+ CellChangeTimes->{{3.868014470360198*^9, 3.8680145037944107`*^9}, {
+   3.8680292314812098`*^9, 3.868029395379233*^9}, {3.868029434227049*^9, 
+   3.868029635005287*^9}, {3.86802967698798*^9, 3.868029711518064*^9}, {
+   3.868029744537092*^9, 3.8680297754347143`*^9}, {3.868029822933708*^9, 
+   3.8680301979179688`*^9}, {3.868030255994999*^9, 3.8680303289362392`*^9}, {
+   3.868030397405065*^9, 3.86803064176755*^9}, 3.868030672329624*^9, {
+   3.868030822470519*^9, 3.868030839748783*^9}, {3.8680308794145203`*^9, 
+   3.868030882601823*^9}, {3.86803107116189*^9, 3.868031079735796*^9}, {
+   3.868033948137206*^9, 3.868033951787451*^9}, {3.868033992456641*^9, 
+   3.868033995351027*^9}},
+ FontColor->RGBColor[
+  0.22584878309300374`, 0.4608987563897154, 
+   0.9291523613336385],ExpressionUUID->"36829add-cc3f-4ef4-9e2d-e3db8865e482"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Results of experiments are stored in  the List  called \
+\[OpenCurlyQuote]EXPERIMENT\[CloseCurlyQuote]\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.868014545105165*^9, 3.8680145459379587`*^9}, {
+  3.868014892516777*^9, 3.868014949755206*^9}, {3.868015011246406*^9, 
+  3.8680150525945597`*^9}, {3.868034374502665*^9, 
+  3.868034427127583*^9}},ExpressionUUID->"3bbd0552-493b-4c8b-8904-\
+cd40325553e6"],
+
+Cell[BoxData["EXPERIMENT"], "Input",
+ CellChangeTimes->{{3.868014956126999*^9, 3.868014956819089*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"450f82db-f1e5-4a90-87f2-d9a2eb9f5707"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+By default, EQLab loads some predefined functions, So you can run an \
+experiment.\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.868014545105165*^9, 3.8680145459379587`*^9}, {
+  3.868014892516777*^9, 3.868014949755206*^9}, {3.868015011246406*^9, 
+  3.8680150525945597`*^9}, {3.868034449133663*^9, 
+  3.8680344571889143`*^9}},ExpressionUUID->"9682db39-4b99-4a31-8c5b-\
+a7e91d8f5569"],
+
+Cell[BoxData[
+ RowBox[{"RunExperiment", "[", "]"}]], "Input",
+ CellChangeTimes->{{3.868015054056655*^9, 3.86801505685408*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"0855665d-ea40-4fe1-a3bb-c6dd26ee596c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Now  EXPERIMENT has one element (one experiment)", "Subsubsection",
+ CellChangeTimes->{{3.868014545105165*^9, 3.8680145459379587`*^9}, {
+  3.868014892516777*^9, 3.868014949755206*^9}, {3.868015011246406*^9, 
+  3.8680150769427433`*^9}, {3.868015150945788*^9, 3.868015153870656*^9}, {
+  3.868015288665875*^9, 
+  3.868015288946899*^9}},ExpressionUUID->"fcdc34b9-8bf0-4490-a884-\
+32df030da254"],
+
+Cell[BoxData[
+ RowBox[{"EXPERIMENT", "//", "Length"}]], "Input",
+ CellChangeTimes->{{3.868015054056655*^9, 3.8680150859491587`*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"509c5c0b-d2b2-45a7-a5bb-8dac678544cd"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+One can run another experiment, and check the size of EXPERIMENT again\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.868014545105165*^9, 3.8680145459379587`*^9}, {
+  3.868014892516777*^9, 3.868014949755206*^9}, {3.868015011246406*^9, 
+  3.8680150769427433`*^9}, {3.868015150945788*^9, 
+  3.8680152118424463`*^9}},ExpressionUUID->"0be26e55-91e3-43fb-93f5-\
+cb47eeaeba9f"],
+
+Cell[BoxData[{
+ RowBox[{"RunExperiment", "[", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"EXPERIMENT", "//", "Length"}]}], "Input",
+ CellChangeTimes->{{3.868015054056655*^9, 3.8680150859491587`*^9}, {
+  3.868015215986352*^9, 3.868015216245071*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"fa085455-e7d6-4366-8589-90d86f3af894"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["See contents of experiment 1", "Subsubsection",
+ CellChangeTimes->{{3.868014545105165*^9, 3.8680145459379587`*^9}, {
+  3.868014892516777*^9, 3.868014949755206*^9}, {3.868015011246406*^9, 
+  3.8680150769427433`*^9}, {3.868015150945788*^9, 
+  3.86801524533285*^9}},ExpressionUUID->"fcfdd247-cc2d-4c90-ad93-\
+291505b77f79"],
+
+Cell[BoxData[
+ RowBox[{"EXPERIMENT", "[", 
+  RowBox[{"[", "1", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.868015054056655*^9, 3.8680150859491587`*^9}, {
+  3.868015215986352*^9, 3.868015216245071*^9}, {3.868015247855111*^9, 
+  3.868015249720763*^9}},
+ CellLabel->"In[15]:=",ExpressionUUID->"4b6f814a-8fc6-4224-ae93-6c57bee481d6"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+MakePlots[i] does the plots for the ith experiment and stores it in a \
+\[OpenCurlyQuote]SUPERARRAY\[OpenCurlyQuote] called \[OpenCurlyQuote]PLOTS\
+\[CloseCurlyQuote]. Use ShowPlots[i] to see results.\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.868014545105165*^9, 3.8680145459379587`*^9}, {
+  3.868014892516777*^9, 3.868014949755206*^9}, {3.868015011246406*^9, 
+  3.8680150769427433`*^9}, {3.868015150945788*^9, 3.86801524533285*^9}, {
+  3.868015332015613*^9, 3.868015467762376*^9}, {3.8680155011507273`*^9, 
+  3.86801551267877*^9}, {3.868015544889543*^9, 
+  3.868015556117515*^9}},ExpressionUUID->"b7e8c601-3fb7-4ee6-a0da-\
+1a124442b0c3"],
+
+Cell[BoxData[{
+ RowBox[{"MakePlots", "[", "1", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ShowPlots", "[", "1", "]"}]}], "Input",
+ CellChangeTimes->{{3.868015406357771*^9, 3.868015410747642*^9}, 
+   3.86801547323567*^9, {3.868015519505319*^9, 3.8680155627022*^9}},
+ CellLabel->"In[16]:=",ExpressionUUID->"db31c648-1280-453a-a2a5-d3a767738b3e"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Experiments 1 and 2 where done with default functions and default values for \
+\[OpenCurlyQuote]nquestions\[CloseCurlyQuote]. To use the custom functions \
+defined above, one needs to load them with \
+\[OpenCurlyQuote]SetUserFunctions[]\[CloseCurlyQuote]\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.868014545105165*^9, 3.8680145459379587`*^9}, {
+  3.868014892516777*^9, 3.868014949755206*^9}, {3.868015011246406*^9, 
+  3.8680150769427433`*^9}, {3.868015150945788*^9, 3.86801524533285*^9}, {
+  3.868015332015613*^9, 3.868015467762376*^9}, {3.8680155011507273`*^9, 
+  3.86801551267877*^9}, {3.868015544889543*^9, 3.868015556117515*^9}, {
+  3.868015589036236*^9, 3.868015662085841*^9}, {3.868015716127537*^9, 
+  3.868015737300075*^9}, {3.8680345185068207`*^9, 
+  3.868034540254979*^9}},ExpressionUUID->"3ed1ac85-029e-4cdd-9fd7-\
+2f434f294ffc"],
+
+Cell[BoxData[{
+ RowBox[{"SetUserFunctions", "[", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"RunExperiment", "[", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MakePlots", "[", "3", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ShowPlots", "[", "3", "]"}]}], "Input",
+ CellChangeTimes->{{3.8680156504426193`*^9, 3.8680157066113663`*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"b1bc0661-18b9-44a7-9e08-0c06fbfbbf8d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+\[OpenCurlyQuote]qpredictors\[CloseCurlyQuote] cannot be changed, but \
+\[OpenCurlyQuote]nquestions\[CloseCurlyQuote] can be reinitialized before \
+running another experiment\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.868014545105165*^9, 3.8680145459379587`*^9}, {
+  3.868014892516777*^9, 3.868014949755206*^9}, {3.868015011246406*^9, 
+  3.8680150769427433`*^9}, {3.868015150945788*^9, 3.86801524533285*^9}, {
+  3.868015332015613*^9, 3.868015467762376*^9}, {3.8680155011507273`*^9, 
+  3.86801551267877*^9}, {3.868015544889543*^9, 3.868015556117515*^9}, {
+  3.868015589036236*^9, 3.868015662085841*^9}, {3.868015716127537*^9, 
+  3.868015737300075*^9}, {3.86802844015928*^9, 3.868028505076396*^9}, {
+  3.8680350947401953`*^9, 
+  3.868035105519802*^9}},ExpressionUUID->"050e3363-4f94-4b82-be63-\
+b4ad6d8294ff"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"nquestions", "=", "1000"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"RunExperiment", "[", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"MakePlots", "[", "4", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ShowPlots", "[", "4", "]"}]}], "Input",
+ CellChangeTimes->{{3.8680284902659082`*^9, 3.868028561414626*^9}},
+ CellLabel->"In[22]:=",ExpressionUUID->"8baf8c26-489d-423c-ad43-47b200a8f4f3"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1269, 610},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"12.2 for Mac OS X x86 (64-bit) (December 12, 2020)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"2cb41dd8-277b-4cf0-a0ce-3087d5b6f010"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 324, 4, 86, "Title",ExpressionUUID->"05eb7eb7-37b8-47f3-8792-ff4a794b506a"],
+Cell[907, 28, 969, 17, 85, "Subtitle",ExpressionUUID->"4daa3a20-c068-4a54-b419-915252edccab"],
+Cell[1879, 47, 4249, 101, 626, "Text",ExpressionUUID->"c90bb2f2-aba9-4612-8799-7f58e9d9bd43"],
+Cell[CellGroupData[{
+Cell[6153, 152, 936, 16, 85, "Subtitle",ExpressionUUID->"815c0808-60ba-479e-972a-96415d568670"],
+Cell[CellGroupData[{
+Cell[7114, 172, 886, 13, 35, "ItemNumbered",ExpressionUUID->"2c380773-383e-4837-8b42-8cb8c13ee754",
+ InitializationCell->True],
+Cell[8003, 187, 375, 6, 30, "Input",ExpressionUUID->"104257b5-d17f-4278-950c-73da9a07e689"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8415, 198, 944, 15, 35, "ItemNumbered",ExpressionUUID->"8ecdf519-4836-4b51-94eb-f604fa272ac3",
+ InitializationCell->True],
+Cell[9362, 215, 497, 11, 52, "Input",ExpressionUUID->"dbaa4763-9e92-4921-a592-388485469b04"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9896, 231, 946, 15, 35, "ItemNumbered",ExpressionUUID->"e0be0854-b48b-4be7-b681-6238fe28bdab",
+ InitializationCell->True],
+Cell[CellGroupData[{
+Cell[10867, 250, 889, 17, 55, "SubitemNumbered",ExpressionUUID->"14c50d1c-1317-41d6-ac8c-64c1aafdc7c1",
+ InitializationCell->True],
+Cell[11759, 269, 2558, 67, 233, "Input",ExpressionUUID->"4fe9d508-a531-493c-b8fc-57b40eb9e83f"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14354, 341, 1131, 18, 31, "SubitemNumbered",ExpressionUUID->"98c69957-6c92-47fe-8faa-91cfe7e48b54",
+ InitializationCell->True],
+Cell[15488, 361, 589, 16, 52, "Input",ExpressionUUID->"da7b29eb-a6d4-4190-96c5-1c87d20f9f6d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16114, 382, 1096, 20, 103, "SubitemNumbered",ExpressionUUID->"ce39e2dd-d27d-4041-97ce-01384059f0af",
+ InitializationCell->True],
+Cell[17213, 404, 1373, 35, 52, "Input",ExpressionUUID->"8a7a3bea-6296-4865-8d70-e6ebeaf24440"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18647, 446, 879, 16, 85, "Subtitle",ExpressionUUID->"36829add-cc3f-4ef4-9e2d-e3db8865e482"],
+Cell[CellGroupData[{
+Cell[19551, 466, 409, 8, 45, "Subsubsection",ExpressionUUID->"3bbd0552-493b-4c8b-8904-cd40325553e6"],
+Cell[19963, 476, 181, 2, 30, "Input",ExpressionUUID->"450f82db-f1e5-4a90-87f2-d9a2eb9f5707"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20181, 483, 391, 8, 45, "Subsubsection",ExpressionUUID->"9682db39-4b99-4a31-8c5b-a7e91d8f5569"],
+Cell[20575, 493, 205, 3, 30, "Input",ExpressionUUID->"0855665d-ea40-4fe1-a3bb-c6dd26ee596c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[20817, 501, 396, 6, 45, "Subsubsection",ExpressionUUID->"fcdc34b9-8bf0-4490-a884-32df030da254"],
+Cell[21216, 509, 211, 3, 30, "Input",ExpressionUUID->"509c5c0b-d2b2-45a7-a5bb-8dac678544cd"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21464, 517, 379, 7, 45, "Subsubsection",ExpressionUUID->"0be26e55-91e3-43fb-93f5-cb47eeaeba9f"],
+Cell[21846, 526, 324, 5, 52, "Input",ExpressionUUID->"fa085455-e7d6-4366-8589-90d86f3af894"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22207, 536, 326, 5, 45, "Subsubsection",ExpressionUUID->"fcfdd247-cc2d-4c90-ad93-291505b77f79"],
+Cell[22536, 543, 331, 6, 30, "Input",ExpressionUUID->"4b6f814a-8fc6-4224-ae93-6c57bee481d6"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22904, 554, 651, 11, 45, "Subsubsection",ExpressionUUID->"b7e8c601-3fb7-4ee6-a0da-1a124442b0c3"],
+Cell[23558, 567, 341, 5, 52, "Input",ExpressionUUID->"db31c648-1280-453a-a2a5-d3a767738b3e"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23936, 577, 851, 14, 71, "Subsubsection",ExpressionUUID->"3ed1ac85-029e-4cdd-9fd7-2f434f294ffc"],
+Cell[24790, 593, 403, 6, 94, "Input",ExpressionUUID->"b1bc0661-18b9-44a7-9e08-0c06fbfbbf8d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[25230, 604, 819, 14, 45, "Subsubsection",ExpressionUUID->"050e3363-4f94-4b82-be63-b4ad6d8294ff"],
+Cell[26052, 620, 416, 7, 94, "Input",ExpressionUUID->"8baf8c26-489d-423c-ad43-47b200a8f4f3"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
