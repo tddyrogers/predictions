@@ -23,7 +23,6 @@
 FunctionsAreInitizialed=False;
 
 
-
 (* ::Input::Initialization:: *)
 npredictorsDEFAULT=4;
 nquestionsDEFAULT=20;
