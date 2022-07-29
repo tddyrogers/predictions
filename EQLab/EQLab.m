@@ -76,6 +76,39 @@ Init[];
 Outcome[question_]:=question[[3]]//Mean//N//Sign;
 
 Surprisal[question_]:=Table[Which[NumericQ[question[[1,i]]]&&NumericQ[question[[4]]],Which[question[[4]]>0,-Log[question[[1,i]]],question[[4]]<0,-Log[1-question[[1,i]]],question[[4]]==0,0],True,I],{i,1,question[[1]]//Length}];
+Reward[question_]:=Module[
+{R,pi,si,pc,c=1,q,V,smean,\[CapitalDelta]s,ri,ipredictor,r={}(*List of rewards *)},
+smean=question[[5]]//Mean;
+\[CapitalDelta]s=question[[5]]//StandardDeviation;
+V=question[[3]]//Mean//Abs;
+R=\[CapitalDelta]s*V//Abs;
+pc=Exp[-smean-c*\[CapitalDelta]s];
+
+q=question[[4]];
+
+For[ipredictor=1,ipredictor<=npredictors,ipredictor++,
+
+pi=question[[1,ipredictor]];
+
+si=question[[5,ipredictor]];
+
+ri=Which[
+q>0,R Log[pi/pc],
+q<0,R Log[(1-pi)/pc],
+q==0,0
+];
+
+(*update rj: sbig-s can be negative, so use a theta function*)
+ri=ri*HeavisideTheta[smean+\[CapitalDelta]s-si]//ReplaceAll[HeavisideTheta[0]->0];
+
+AppendTo[r,ri];
+
+
+];
+
+r
+
+]
 
 
 
@@ -131,6 +164,7 @@ SetAttributes[measure,HoldAll];
 SetAttributes[resolve,HoldAll];
 SetAttributes[outcome,HoldAll];
 SetAttributes[surprisal,HoldAll];
+SetAttributes[reward,HoldAll];
 
 predict[experiment_,newquestion_]:=Module[
 {p},
@@ -162,6 +196,12 @@ s=Surprisal[newquestion];
 newquestion=newquestion//ReplacePart[5->s];
 ]
 
+reward[newquestion_]:=Module[
+{r},
+r=Reward[newquestion];
+newquestion=newquestion//ReplacePart[6->r];
+]
+
 
 askquestion[experiment_]:=Module[
 {newquestion=blankquestion[]},
@@ -171,6 +211,7 @@ measure[newquestion];
 resolve[experiment,newquestion];
 outcome[newquestion];
 surprisal[newquestion];
+reward[newquestion];
 
 AppendTo[experiment,newquestion]
 
@@ -275,6 +316,8 @@ qPlot[iexperiment_]:=(EXPERIMENT[[iexperiment,All,4]]//ListLogLinearPlot[#,Aspec
 
 sPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,5]][[All,i]],{i,1,npredictors}]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(s\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
 
+rPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,6]][[All,i]],{i,1,npredictors}]//ListLogLogPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(r\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
+
 
 sStatPlot[iexperiment_]:=(Table[(Around[EXPERIMENT[[iexperiment,All,5]][[i]]//Mean,EXPERIMENT[[iexperiment,All,5]][[i]]//StandardDeviation]),{i,1,EXPERIMENT[[iexperiment,All,5]]//Length}]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->{marker1,0.016},PlotStyle->Directive[Red],PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(s\), \(\(\\\ \)\(j\)\)]\)"},LabelStyle->LABELSTYLE(*,Epilog\[Rule]{Directive[Red,Thick],Line[{{0,prob},{100,prob}}]}*)]&/.PLOTSTYLE1);
 marker1=Graphics[{Blue,Disk[]}];
@@ -316,6 +359,7 @@ AppendTo[plots,mPlot[iexperiment]];
 AppendTo[plots,vPlot[iexperiment]];
 AppendTo[plots,qPlot[iexperiment]];
 AppendTo[plots,sPlot[iexperiment]];
+AppendTo[plots,rPlot[iexperiment]];
 AppendTo[plots,sStatPlot[iexperiment]];
 
 length=(PLOTS//Length);
@@ -338,7 +382,8 @@ ShowPlots[iexperiment_]:=Module[
 Grid[
 {
 {PLOTS[[iexperiment,1]], PLOTS[[iexperiment,2]],PLOTS[[iexperiment,3]]}, 
-{PLOTS[[iexperiment,4]],PLOTS[[iexperiment,5]],PLOTS[[iexperiment,6]]}
+{PLOTS[[iexperiment,4]],PLOTS[[iexperiment,5]],PLOTS[[iexperiment,6]]},
+{Nothing,PLOTS[[iexperiment,7]],Nothing}
 },
 Spacings->{2,3}
 ]
