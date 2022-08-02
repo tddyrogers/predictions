@@ -58,6 +58,9 @@ superarray="",user="",default=""},
 For[isuperarray=1,isuperarray<=isuperarraymax,isuperarray++,
 superarray=SUPERARRAYNAME[[isuperarray]];
 superarray<>"={}"//ToExpression;
+
+(*protect super arrays from user modification*)
+SUPERARRAYNAME[[isuperarray]]<>"//Protect"//ToExpression
 ]
 ]
 
@@ -99,7 +102,7 @@ q==0,0
 ];
 
 (*update rj: sbig-s can be negative, so use a theta function*)
-ri=ri*HeavisideTheta[smean+\[CapitalDelta]s-si]//ReplaceAll[HeavisideTheta[0]->0];
+ri=ri*HeavisideTheta[smean+c*\[CapitalDelta]s-si]//ReplaceAll[HeavisideTheta[0]->0];
 
 AppendTo[r,ri];
 
@@ -132,7 +135,7 @@ p=blankpredictorcontainer[];
 m=0;
 v=blankpredictorcontainer[];
 q=0;
-s=blankpredictorcontainer[Indefinite];
+s=blankpredictorcontainer[Indeterminate];
 r=blankpredictorcontainer[];
 
 question={
@@ -341,51 +344,114 @@ For[iquestion=1,iquestion<=nquestions,iquestion++,
 askquestion[experiment]
 ];
 
+PLOTS//Unprotect;
+EXPERIMENT//Unprotect;
+
+AppendTo[PLOTS,False];
+
 AppendTo[EXPERIMENT,experiment];
+
+PLOTS//Protect;
+EXPERIMENT//Protect;
 
 ]
 
 
 
 MakePlots[iexperiment_]:=Module[
-{plots={},length},
+{plots={},length=(EXPERIMENT//Length),cantdoplot},
+(*cond1=!TrueQ[length<iexperiment^2//Sqrt];
+cond2=(length\[Equal]0);
+cond3=(!IntegerQ[iexperiment]);*)
+
+cantdoplot=(
+TrueQ[length<iexperiment^2//Sqrt]||
+(length==0)||
+(!IntegerQ[iexperiment])
+);
+
 If[
-(EXPERIMENT//Length)<iexperiment,(*if*)
+cantdoplot,(*if*)
 
 Print["Experiment i = ",iexperiment," no present."],(*then*)
 
-AppendTo[plots,pPlot[iexperiment]];(*else*)
+plots={
+{pPlot[iexperiment], mPlot[iexperiment],vPlot[iexperiment]}, 
+{qPlot[iexperiment],sPlot[iexperiment],rPlot[iexperiment]},
+{Nothing,sStatPlot[iexperiment],Nothing}
+};
+
+
+(*AppendTo[plots,pPlot[iexperiment]];(*else*)
 AppendTo[plots,mPlot[iexperiment]];
 AppendTo[plots,vPlot[iexperiment]];
 AppendTo[plots,qPlot[iexperiment]];
 AppendTo[plots,sPlot[iexperiment]];
 AppendTo[plots,rPlot[iexperiment]];
-AppendTo[plots,sStatPlot[iexperiment]];
+AppendTo[plots,sStatPlot[iexperiment]];*)
 
-length=(PLOTS//Length);
+(*length=(PLOTS//Length);
 
-While[length<iexperiment,  AppendTo[PLOTS,0]  ;length++];
-
+While[length<iexperiment,  AppendTo[PLOTS,0]  ;length++];*)
+PLOTS//Unprotect;
 PLOTS[[iexperiment]]=plots;
+PLOTS//Protect;
 
 ]
 ]
+
 
 MakePlots[]:=Module[
-{iexperiment},
-For[iexperiment=1,iexperiment<=(EXPERIMENT//Length),MakePlots[iexperiment];iexperiment++]
+{length=EXPERIMENT//Length},
+If[length>0,
+MakePlots[length],
+Print["No experiment to plot."]
+]
 ]
 
-ShowPlots[iexperiment_]:=Module[
-{},
 
-Grid[
+
+ShowPlots[iexperiment_]:=Module[
+{length=PLOTS//Length,indexissue=False,notpresent=False,cantshowplot,grid},
+
+indexissue=
+(
+TrueQ[length<(iexperiment^2//Sqrt)]||
+(length==0)||
+(!IntegerQ[iexperiment])
+);
+
+notpresent=Which[indexissue,indexissue,True,TrueQ[!PLOTS[[iexperiment]]]];
+
+If[notpresent,MakePlots[iexperiment],Nothing];
+
+If[
+indexissue,(*if*)
+
+Print["Plots i = ",iexperiment," not present."];(*then*)
+grid=0,
+
+grid=Grid[PLOTS[[iexperiment]],Spacings->{2,3}](*else*)
+
+(*grid=Grid[(*else*)
 {
 {PLOTS[[iexperiment,1]], PLOTS[[iexperiment,2]],PLOTS[[iexperiment,3]]}, 
 {PLOTS[[iexperiment,4]],PLOTS[[iexperiment,5]],PLOTS[[iexperiment,6]]},
 {Nothing,PLOTS[[iexperiment,7]],Nothing}
 },
-Spacings->{2,3}
+Spacings\[Rule]{2,3}
+]*)
+];
+grid
 ]
+
+ShowPlots[]:=Module[
+{length=PLOTS//Length,grid},
+If[length>0, 
+grid=ShowPlots[length],
+Print["No plots to show."];
+grid=0
+];
+grid
 ]
 

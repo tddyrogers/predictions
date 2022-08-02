@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     79686,       1738]
-NotebookOptionsPosition[     76505,       1662]
-NotebookOutlinePosition[     76934,       1679]
-CellTagsIndexPosition[     76891,       1676]
+NotebookDataLength[     89601,       1940]
+NotebookOptionsPosition[     86325,       1863]
+NotebookOutlinePosition[     86754,       1880]
+CellTagsIndexPosition[     86711,       1877]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -201,9 +201,18 @@ Cell[BoxData[{
         "\[IndentingNewLine]", 
         RowBox[{
          RowBox[{"superarray", "<>", "\"\<={}\>\""}], "//", "ToExpression"}], 
-        ";"}]}], "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
-    "]"}]}], "\[IndentingNewLine]", 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"(*", 
+         RowBox[{
+         "protect", " ", "super", " ", "arrays", " ", "from", " ", "user", 
+          " ", "modification"}], "*)"}], "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"SUPERARRAYNAME", "[", 
+           RowBox[{"[", "isuperarray", "]"}], "]"}], "<>", 
+          "\"\<//Protect\>\""}], "//", "ToExpression"}]}]}], 
+      "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"Init", "[", "]"}], ":=", 
@@ -237,7 +246,8 @@ Cell[BoxData[{
    3.867988314105927*^9, 3.867988326616786*^9}, {3.8679897113491*^9, 
    3.867989718941382*^9}, {3.8679902981799917`*^9, 3.867990311496744*^9}, {
    3.867990349493204*^9, 3.8679904067616167`*^9}, {3.867995139798245*^9, 
-   3.8679951405502167`*^9}},ExpressionUUID->"7c537e84-6dd6-481b-9d60-\
+   3.8679951405502167`*^9}, {3.8681846975884047`*^9, 
+   3.868184746111701*^9}},ExpressionUUID->"7c537e84-6dd6-481b-9d60-\
 8a46ce829e97"]
 }, Open  ]],
 
@@ -398,7 +408,8 @@ Cell[BoxData[{
          RowBox[{
           RowBox[{"ri", "*", 
            RowBox[{"HeavisideTheta", "[", 
-            RowBox[{"smean", "+", "\[CapitalDelta]s", "-", "si"}], "]"}]}], "//", 
+            RowBox[{"smean", "+", 
+             RowBox[{"c", "*", "\[CapitalDelta]s"}], "-", "si"}], "]"}]}], "//", 
           RowBox[{"ReplaceAll", "[", 
            RowBox[{
             RowBox[{"HeavisideTheta", "[", "0", "]"}], "\[Rule]", "0"}], 
@@ -477,8 +488,9 @@ Cell[BoxData[{
    3.868079168878536*^9, 3.868079250666349*^9}, {3.868079288105028*^9, 
    3.868079294814838*^9}, {3.86807936582477*^9, 3.868079424334763*^9}, {
    3.868079550016354*^9, 3.8680795514719687`*^9}, {3.868079607432931*^9, 
-   3.868079623337034*^9}, {3.8680803730785*^9, 
-   3.8680803733996983`*^9}},ExpressionUUID->"d4825404-4ccd-4c99-83e5-\
+   3.868079623337034*^9}, {3.8680803730785*^9, 3.8680803733996983`*^9}, {
+   3.8681743384602957`*^9, 
+   3.8681743389382544`*^9}},ExpressionUUID->"d4825404-4ccd-4c99-83e5-\
 cde7dfc5207d"]
 }, Open  ]],
 
@@ -536,8 +548,8 @@ Cell[BoxData[
        "\[IndentingNewLine]", 
        RowBox[{"q", "=", "0"}], ";", "\[IndentingNewLine]", 
        RowBox[{"s", "=", 
-        RowBox[{"blankpredictorcontainer", "[", "Indefinite", "]"}]}], ";", 
-       "\[IndentingNewLine]", 
+        RowBox[{"blankpredictorcontainer", "[", "Indeterminate", "]"}]}], ";",
+        "\[IndentingNewLine]", 
        RowBox[{"r", "=", 
         RowBox[{"blankpredictorcontainer", "[", "]"}]}], ";", 
        "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -617,8 +629,14 @@ Cell[BoxData[
    3.867987226727892*^9, 3.867987239341164*^9}, {3.867987314072206*^9, 
    3.8679873291130953`*^9}, {3.867987398898814*^9, 3.867987432980686*^9}, {
    3.867987465288266*^9, 3.867987560420146*^9}, {3.867987600458206*^9, 
-   3.867987602542053*^9}, {3.867987646213932*^9, 3.867987651080409*^9}},
- CellLabel->"In[1]:=",ExpressionUUID->"34e622fe-db86-4dab-b4bd-2eff197d486a"]
+   3.867987602542053*^9}, {3.867987646213932*^9, 3.867987651080409*^9}, 
+   3.868172047423807*^9},ExpressionUUID->"34e622fe-db86-4dab-b4bd-\
+2eff197d486a"],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8681720409073467`*^9, 
+  3.868172045163191*^9}},ExpressionUUID->"553c7cd7-c376-4839-ab5f-\
+a0a87159f3cf"]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1116,7 +1134,7 @@ Cell[BoxData[{
       RowBox[{"LABELSTYLE", "\[Rule]", 
        RowBox[{"Directive", "[", 
         RowBox[{"Black", ",", "Bold", ",", "Medium"}], "]"}]}]}], 
-     "\[IndentingNewLine]", "}"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+     "\[IndentingNewLine]", "}"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"pPlot", "[", "iexperiment_", "]"}], ":=", 
@@ -1456,8 +1474,17 @@ Cell[BoxData[
          RowBox[{"askquestion", "[", "experiment", "]"}]}], 
         "\[IndentingNewLine]", "]"}], ";", "\[IndentingNewLine]", 
        "\[IndentingNewLine]", 
+       RowBox[{"PLOTS", "//", "Unprotect"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"EXPERIMENT", "//", "Unprotect"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
        RowBox[{"AppendTo", "[", 
-        RowBox[{"EXPERIMENT", ",", "experiment"}], "]"}], ";"}]}], 
+        RowBox[{"PLOTS", ",", "False"}], "]"}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"AppendTo", "[", 
+        RowBox[{"EXPERIMENT", ",", "experiment"}], "]"}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"PLOTS", "//", "Protect"}], ";", "\[IndentingNewLine]", 
+       RowBox[{"EXPERIMENT", "//", "Protect"}], ";"}]}], 
      "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}], 
    "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
    "\[IndentingNewLine]", 
@@ -1468,128 +1495,274 @@ Cell[BoxData[
       RowBox[{"{", 
        RowBox[{
         RowBox[{"plots", "=", 
-         RowBox[{"{", "}"}]}], ",", "length"}], "}"}], ",", 
-      "\[IndentingNewLine]", 
-      RowBox[{"If", "[", "\[IndentingNewLine]", 
-       RowBox[{
-        RowBox[{
+         RowBox[{"{", "}"}]}], ",", 
+        RowBox[{"length", "=", 
          RowBox[{"(", 
-          RowBox[{"EXPERIMENT", "//", "Length"}], ")"}], "<", "iexperiment"}],
-         ",", 
-        RowBox[{"(*", "if", "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"EXPERIMENT", "//", "Length"}], ")"}]}], ",", 
+        "cantdoplot"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"cond1", "=", 
+         RowBox[{"!", 
+          RowBox[{"TrueQ", "[", 
+           RowBox[{
+            RowBox[{"length", "<", 
+             RowBox[{"iexperiment", "^", "2"}]}], "//", "Sqrt"}], "]"}]}]}], 
+        ";", "\[IndentingNewLine]", 
+        RowBox[{"cond2", "=", 
+         RowBox[{"(", 
+          RowBox[{"length", "\[Equal]", "0"}], ")"}]}], ";", 
         "\[IndentingNewLine]", 
-        RowBox[{"Print", "[", 
+        RowBox[{"cond3", "=", 
+         RowBox[{"(", 
+          RowBox[{"!", 
+           RowBox[{"IntegerQ", "[", "iexperiment", "]"}]}], ")"}]}], ";"}], 
+       "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"cantdoplot", "=", 
+        RowBox[{"(", "\[IndentingNewLine]", 
          RowBox[{
-         "\"\<Experiment i = \>\"", ",", "iexperiment", ",", 
-          "\"\< no present.\>\""}], "]"}], ",", 
-        RowBox[{"(*", "then", "*)"}], "\[IndentingNewLine]", 
-        "\[IndentingNewLine]", 
-        RowBox[{
-         RowBox[{"AppendTo", "[", 
-          RowBox[{"plots", ",", 
-           RowBox[{"pPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
-         RowBox[{"(*", "else", "*)"}], "\[IndentingNewLine]", 
-         RowBox[{"AppendTo", "[", 
-          RowBox[{"plots", ",", 
-           RowBox[{"mPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
-         "\[IndentingNewLine]", 
-         RowBox[{"AppendTo", "[", 
-          RowBox[{"plots", ",", 
-           RowBox[{"vPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
-         "\[IndentingNewLine]", 
-         RowBox[{"AppendTo", "[", 
-          RowBox[{"plots", ",", 
-           RowBox[{"qPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
-         "\[IndentingNewLine]", 
-         RowBox[{"AppendTo", "[", 
-          RowBox[{"plots", ",", 
-           RowBox[{"sPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
-         "\[IndentingNewLine]", 
-         RowBox[{"AppendTo", "[", 
-          RowBox[{"plots", ",", 
-           RowBox[{"rPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
-         "\[IndentingNewLine]", 
-         RowBox[{"AppendTo", "[", 
-          RowBox[{"plots", ",", 
-           RowBox[{"sStatPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
-         "\[IndentingNewLine]", "\[IndentingNewLine]", 
-         RowBox[{"length", "=", 
+          RowBox[{"TrueQ", "[", 
+           RowBox[{
+            RowBox[{"length", "<", 
+             RowBox[{"iexperiment", "^", "2"}]}], "//", "Sqrt"}], "]"}], "||",
+           "\[IndentingNewLine]", 
           RowBox[{"(", 
-           RowBox[{"PLOTS", "//", "Length"}], ")"}]}], ";", 
-         "\[IndentingNewLine]", "\[IndentingNewLine]", 
-         RowBox[{"While", "[", 
+           RowBox[{"length", "\[Equal]", "0"}], ")"}], "||", 
+          "\[IndentingNewLine]", 
+          RowBox[{"(", 
+           RowBox[{"!", 
+            RowBox[{"IntegerQ", "[", "iexperiment", "]"}]}], ")"}]}], 
+         "\[IndentingNewLine]", ")"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"If", "[", "\[IndentingNewLine]", 
+        RowBox[{"cantdoplot", ",", 
+         RowBox[{"(*", "if", "*)"}], "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{"Print", "[", 
           RowBox[{
-           RowBox[{"length", "<", "iexperiment"}], ",", "  ", 
+          "\"\<Experiment i = \>\"", ",", "iexperiment", ",", 
+           "\"\< no present.\>\""}], "]"}], ",", 
+         RowBox[{"(*", "then", "*)"}], "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"plots", "=", 
+           RowBox[{"{", "\[IndentingNewLine]", 
+            RowBox[{
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"pPlot", "[", "iexperiment", "]"}], ",", " ", 
+               RowBox[{"mPlot", "[", "iexperiment", "]"}], ",", 
+               RowBox[{"vPlot", "[", "iexperiment", "]"}]}], "}"}], ",", " ", 
+             "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"qPlot", "[", "iexperiment", "]"}], ",", 
+               RowBox[{"sPlot", "[", "iexperiment", "]"}], ",", 
+               RowBox[{"rPlot", "[", "iexperiment", "]"}]}], "}"}], ",", 
+             "\[IndentingNewLine]", 
+             RowBox[{"{", 
+              RowBox[{"Nothing", ",", 
+               RowBox[{"sStatPlot", "[", "iexperiment", "]"}], ",", 
+               "Nothing"}], "}"}]}], "\[IndentingNewLine]", "}"}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
            RowBox[{
             RowBox[{"AppendTo", "[", 
-             RowBox[{"PLOTS", ",", "0"}], "]"}], "  ", ";", 
-            RowBox[{"length", "++"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
-         "\[IndentingNewLine]", 
-         RowBox[{
-          RowBox[{"PLOTS", "[", 
-           RowBox[{"[", "iexperiment", "]"}], "]"}], "=", "plots"}], ";"}]}], 
-       "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}]}], 
-     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", 
+             RowBox[{"plots", ",", 
+              RowBox[{"pPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
+            RowBox[{"(*", "else", "*)"}], "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"plots", ",", 
+              RowBox[{"mPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"plots", ",", 
+              RowBox[{"vPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"plots", ",", 
+              RowBox[{"qPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"plots", ",", 
+              RowBox[{"sPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"plots", ",", 
+              RowBox[{"rPlot", "[", "iexperiment", "]"}]}], "]"}], ";", 
+            "\[IndentingNewLine]", 
+            RowBox[{"AppendTo", "[", 
+             RowBox[{"plots", ",", 
+              RowBox[{"sStatPlot", "[", "iexperiment", "]"}]}], "]"}], ";"}], 
+           "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"(*", 
+           RowBox[{
+            RowBox[{"length", "=", 
+             RowBox[{"(", 
+              RowBox[{"PLOTS", "//", "Length"}], ")"}]}], ";", 
+            "\[IndentingNewLine]", "\[IndentingNewLine]", 
+            RowBox[{"While", "[", 
+             RowBox[{
+              RowBox[{"length", "<", "iexperiment"}], ",", "  ", 
+              RowBox[{
+               RowBox[{"AppendTo", "[", 
+                RowBox[{"PLOTS", ",", "0"}], "]"}], "  ", ";", 
+               RowBox[{"length", "++"}]}]}], "]"}], ";"}], "*)"}], 
+          "\[IndentingNewLine]", 
+          RowBox[{"PLOTS", "//", "Unprotect"}], ";", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"PLOTS", "[", 
+            RowBox[{"[", "iexperiment", "]"}], "]"}], "=", "plots"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"PLOTS", "//", "Protect"}], ";"}]}], "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"MakePlots", "[", "]"}], ":=", 
     RowBox[{"Module", "[", "\[IndentingNewLine]", 
      RowBox[{
-      RowBox[{"{", "iexperiment", "}"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"For", "[", 
+      RowBox[{"{", 
+       RowBox[{"length", "=", 
+        RowBox[{"EXPERIMENT", "//", "Length"}]}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"If", "[", 
        RowBox[{
-        RowBox[{"iexperiment", "=", "1"}], ",", 
-        RowBox[{"iexperiment", "\[LessEqual]", 
-         RowBox[{"(", 
-          RowBox[{"EXPERIMENT", "//", "Length"}], ")"}]}], ",", 
-        RowBox[{
-         RowBox[{"MakePlots", "[", "iexperiment", "]"}], ";", 
-         RowBox[{"iexperiment", "++"}]}]}], "]"}]}], "\[IndentingNewLine]", 
-     "]"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"length", ">", "0"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"MakePlots", "[", "length", "]"}], ",", "\[IndentingNewLine]", 
+        RowBox[{"Print", "[", "\"\<No experiment to plot.\>\"", "]"}]}], 
+       "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"ShowPlots", "[", "iexperiment_", "]"}], ":=", 
     RowBox[{"Module", "[", "\[IndentingNewLine]", 
      RowBox[{
-      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      RowBox[{"Grid", "[", "\[IndentingNewLine]", 
+      RowBox[{"{", 
        RowBox[{
-        RowBox[{"{", "\[IndentingNewLine]", 
+        RowBox[{"length", "=", 
+         RowBox[{"PLOTS", "//", "Length"}]}], ",", 
+        RowBox[{"indexissue", "=", "False"}], ",", 
+        RowBox[{"notpresent", "=", "False"}], ",", "cantshowplot", ",", 
+        "grid"}], "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"indexissue", "=", "\[IndentingNewLine]", 
+        RowBox[{"(", "\[IndentingNewLine]", 
          RowBox[{
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"PLOTS", "[", 
-             RowBox[{"[", 
-              RowBox[{"iexperiment", ",", "1"}], "]"}], "]"}], ",", " ", 
-            RowBox[{"PLOTS", "[", 
-             RowBox[{"[", 
-              RowBox[{"iexperiment", ",", "2"}], "]"}], "]"}], ",", 
-            RowBox[{"PLOTS", "[", 
-             RowBox[{"[", 
-              RowBox[{"iexperiment", ",", "3"}], "]"}], "]"}]}], "}"}], ",", 
-          " ", "\[IndentingNewLine]", 
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"PLOTS", "[", 
-             RowBox[{"[", 
-              RowBox[{"iexperiment", ",", "4"}], "]"}], "]"}], ",", 
-            RowBox[{"PLOTS", "[", 
-             RowBox[{"[", 
-              RowBox[{"iexperiment", ",", "5"}], "]"}], "]"}], ",", 
-            RowBox[{"PLOTS", "[", 
-             RowBox[{"[", 
-              RowBox[{"iexperiment", ",", "6"}], "]"}], "]"}]}], "}"}], ",", 
+          RowBox[{"TrueQ", "[", 
+           RowBox[{"length", "<", 
+            RowBox[{"(", 
+             RowBox[{
+              RowBox[{"iexperiment", "^", "2"}], "//", "Sqrt"}], ")"}]}], 
+           "]"}], "||", "\[IndentingNewLine]", 
+          RowBox[{"(", 
+           RowBox[{"length", "\[Equal]", "0"}], ")"}], "||", 
           "\[IndentingNewLine]", 
-          RowBox[{"{", 
-           RowBox[{"Nothing", ",", 
+          RowBox[{"(", 
+           RowBox[{"!", 
+            RowBox[{"IntegerQ", "[", "iexperiment", "]"}]}], ")"}]}], 
+         "\[IndentingNewLine]", ")"}]}], ";", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{"notpresent", "=", 
+        RowBox[{"Which", "[", 
+         RowBox[{"indexissue", ",", "indexissue", ",", "True", ",", 
+          RowBox[{"TrueQ", "[", 
+           RowBox[{"!", 
             RowBox[{"PLOTS", "[", 
-             RowBox[{"[", 
-              RowBox[{"iexperiment", ",", "7"}], "]"}], "]"}], ",", 
-            "Nothing"}], "}"}]}], "\[IndentingNewLine]", "}"}], ",", 
+             RowBox[{"[", "iexperiment", "]"}], "]"}]}], "]"}]}], "]"}]}], 
+       ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", 
+        RowBox[{"notpresent", ",", 
+         RowBox[{"MakePlots", "[", "iexperiment", "]"}], ",", "Nothing"}], 
+        "]"}], ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"If", "[", "\[IndentingNewLine]", 
+        RowBox[{"indexissue", ",", 
+         RowBox[{"(*", "if", "*)"}], "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Print", "[", 
+           RowBox[{
+           "\"\<Plots i = \>\"", ",", "iexperiment", ",", 
+            "\"\< not present.\>\""}], "]"}], ";", 
+          RowBox[{"(*", "then", "*)"}], "\[IndentingNewLine]", 
+          RowBox[{"grid", "=", "0"}]}], ",", "\[IndentingNewLine]", 
+         "\[IndentingNewLine]", 
+         RowBox[{"grid", "=", 
+          RowBox[{"Grid", "[", 
+           RowBox[{
+            RowBox[{"PLOTS", "[", 
+             RowBox[{"[", "iexperiment", "]"}], "]"}], ",", 
+            RowBox[{"Spacings", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{"2", ",", "3"}], "}"}]}]}], "]"}]}]}], 
+        RowBox[{"(*", "else", "*)"}], "\[IndentingNewLine]", 
         "\[IndentingNewLine]", 
-        RowBox[{"Spacings", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{"2", ",", "3"}], "}"}]}]}], "\[IndentingNewLine]", "]"}]}], 
-     "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]"}]}]], "Input",
+        RowBox[{"(*", 
+         RowBox[{"grid", "=", 
+          RowBox[{"Grid", "[", 
+           RowBox[{"(*", "else", "*)"}], "\[IndentingNewLine]", 
+           RowBox[{
+            RowBox[{"{", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"PLOTS", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"iexperiment", ",", "1"}], "]"}], "]"}], ",", " ", 
+                RowBox[{"PLOTS", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"iexperiment", ",", "2"}], "]"}], "]"}], ",", 
+                RowBox[{"PLOTS", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"iexperiment", ",", "3"}], "]"}], "]"}]}], "}"}], 
+              ",", " ", "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"PLOTS", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"iexperiment", ",", "4"}], "]"}], "]"}], ",", 
+                RowBox[{"PLOTS", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"iexperiment", ",", "5"}], "]"}], "]"}], ",", 
+                RowBox[{"PLOTS", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"iexperiment", ",", "6"}], "]"}], "]"}]}], "}"}], 
+              ",", "\[IndentingNewLine]", 
+              RowBox[{"{", 
+               RowBox[{"Nothing", ",", 
+                RowBox[{"PLOTS", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"iexperiment", ",", "7"}], "]"}], "]"}], ",", 
+                "Nothing"}], "}"}]}], "\[IndentingNewLine]", "}"}], ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"Spacings", "\[Rule]", 
+             RowBox[{"{", 
+              RowBox[{"2", ",", "3"}], "}"}]}]}], "\[IndentingNewLine]", 
+           "]"}]}], "*)"}], "\[IndentingNewLine]", "]"}], ";", 
+       "\[IndentingNewLine]", "grid"}]}], "\[IndentingNewLine]", "]"}]}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"ShowPlots", "[", "]"}], ":=", 
+    RowBox[{"Module", "[", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"length", "=", 
+         RowBox[{"PLOTS", "//", "Length"}]}], ",", "grid"}], "}"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"If", "[", 
+        RowBox[{
+         RowBox[{"length", ">", "0"}], ",", " ", "\[IndentingNewLine]", 
+         RowBox[{"grid", "=", 
+          RowBox[{"ShowPlots", "[", "length", "]"}]}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"Print", "[", "\"\<No plots to show.\>\"", "]"}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"grid", "=", "0"}]}]}], "\[IndentingNewLine]", "]"}], ";", 
+       "\[IndentingNewLine]", "grid"}]}], "\[IndentingNewLine]", "]"}]}], 
+   "\[IndentingNewLine]"}]}]], "Input",
  AutoGeneratedPackage->Automatic,
  InitializationCell->True,
  CellChangeTimes->{{3.867839556779538*^9, 3.86783971669942*^9}, {
@@ -1655,8 +1828,36 @@ Cell[BoxData[
    3.868006386370035*^9}, {3.868006483855555*^9, 3.868006517841785*^9}, {
    3.868010214558299*^9, 3.868010221470664*^9}, {3.8680120951423903`*^9, 
    3.868012095457453*^9}, {3.868013292450026*^9, 3.868013302444119*^9}, {
-   3.868077148866173*^9, 
-   3.868077201476819*^9}},ExpressionUUID->"66ee4e56-fd6a-454e-a12d-\
+   3.868077148866173*^9, 3.868077201476819*^9}, {3.868177042247003*^9, 
+   3.8681770937268133`*^9}, {3.868177161044841*^9, 3.86817731909826*^9}, {
+   3.868177363150455*^9, 3.868177372372237*^9}, {3.86817743137528*^9, 
+   3.868177448705737*^9}, {3.868177697673209*^9, 3.8681778258647614`*^9}, {
+   3.868178153549965*^9, 3.8681781537934637`*^9}, {3.868178440430188*^9, 
+   3.868178479939273*^9}, {3.868178525913862*^9, 3.868178541075962*^9}, {
+   3.8681786104867773`*^9, 3.868178611132959*^9}, {3.868178661127083*^9, 
+   3.868178696907682*^9}, {3.868178776700363*^9, 3.868178778464739*^9}, {
+   3.8681788141557217`*^9, 3.868178929448605*^9}, {3.868179021274122*^9, 
+   3.868179090737752*^9}, 3.8681795930782337`*^9, 3.868179642235042*^9, {
+   3.868180210771839*^9, 3.868180211229206*^9}, {3.868180259014296*^9, 
+   3.868180273821391*^9}, {3.8681804508843403`*^9, 3.86818051044244*^9}, {
+   3.8681805534487553`*^9, 3.868180585744131*^9}, 3.868180633582514*^9, {
+   3.868180733833581*^9, 3.8681807856888638`*^9}, {3.868180858099498*^9, 
+   3.868180887828772*^9}, {3.868180946152787*^9, 3.8681809471159554`*^9}, {
+   3.868180984551711*^9, 3.868180992465754*^9}, 3.86818102685882*^9, {
+   3.8681811107451143`*^9, 3.868181139786384*^9}, {3.8681812431994*^9, 
+   3.868181247144384*^9}, {3.868181279547284*^9, 3.8681812862215767`*^9}, {
+   3.868181431268688*^9, 3.868181489480438*^9}, {3.868181579095106*^9, 
+   3.868181600001113*^9}, {3.868181913144827*^9, 3.8681819316487513`*^9}, {
+   3.8681820724474916`*^9, 3.868182082871159*^9}, {3.868182166030642*^9, 
+   3.8681822200889072`*^9}, {3.8681822542034607`*^9, 3.868182352837035*^9}, {
+   3.8681824479627132`*^9, 3.8681825487033873`*^9}, {3.8681825839191637`*^9, 
+   3.868182689658163*^9}, {3.868182926112784*^9, 3.868182946806343*^9}, {
+   3.868183121493683*^9, 3.8681832348988132`*^9}, {3.868183300038451*^9, 
+   3.868183301826619*^9}, {3.86818345792122*^9, 3.868183554815579*^9}, {
+   3.868183759390683*^9, 3.868183782374711*^9}, {3.868183860689087*^9, 
+   3.868183960697641*^9}, {3.868183993506629*^9, 3.8681840445668583`*^9}, {
+   3.868184119512968*^9, 3.8681841197260523`*^9}, {3.868184778803073*^9, 
+   3.868184864790771*^9}},ExpressionUUID->"66ee4e56-fd6a-454e-a12d-\
 58ec728c9386"]
 }, Open  ]]
 },
@@ -1701,43 +1902,44 @@ Cell[3300, 93, 714, 18, 194, "Input",ExpressionUUID->"ddbdb09c-d910-4b87-bca0-e9
 Cell[CellGroupData[{
 Cell[4051, 116, 428, 8, 32, "Item",ExpressionUUID->"736ea7f7-9f66-43ce-823a-8955e6affb6d",
  InitializationCell->True],
-Cell[4482, 126, 5236, 114, 656, "Input",ExpressionUUID->"7c537e84-6dd6-481b-9d60-8a46ce829e97",
+Cell[4482, 126, 5713, 124, 719, "Input",ExpressionUUID->"7c537e84-6dd6-481b-9d60-8a46ce829e97",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[9755, 245, 488, 8, 32, "Item",ExpressionUUID->"1454894f-1127-4a7b-a6a8-ab9bca049252",
+Cell[10232, 255, 488, 8, 32, "Item",ExpressionUUID->"1454894f-1127-4a7b-a6a8-ab9bca049252",
  InitializationCell->True],
-Cell[10246, 255, 10953, 226, 954, "Input",ExpressionUUID->"d4825404-4ccd-4c99-83e5-cde7dfc5207d",
+Cell[10723, 265, 11041, 228, 954, "Input",ExpressionUUID->"d4825404-4ccd-4c99-83e5-cde7dfc5207d",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[21236, 486, 544, 9, 32, "Item",ExpressionUUID->"b3046d9d-17c8-4a40-b5dc-2e2c469225e9",
+Cell[21801, 498, 544, 9, 32, "Item",ExpressionUUID->"b3046d9d-17c8-4a40-b5dc-2e2c469225e9",
  InitializationCell->True],
-Cell[21783, 497, 7067, 123, 887, "Input",ExpressionUUID->"34e622fe-db86-4dab-b4bd-2eff197d486a",
+Cell[22348, 509, 7075, 124, 887, "Input",ExpressionUUID->"34e622fe-db86-4dab-b4bd-2eff197d486a",
+ InitializationCell->True],
+Cell[29426, 635, 154, 3, 30, "Input",ExpressionUUID->"553c7cd7-c376-4839-ab5f-a0a87159f3cf"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29617, 643, 577, 10, 32, "Item",ExpressionUUID->"e7fa18bb-26fb-42e3-aad7-0a8294813414",
+ InitializationCell->True],
+Cell[30197, 655, 10288, 208, 1286, "Input",ExpressionUUID->"c3e748d7-81c0-4746-beec-0ca6ef7db3ce",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[28887, 625, 577, 10, 32, "Item",ExpressionUUID->"e7fa18bb-26fb-42e3-aad7-0a8294813414",
+Cell[40522, 868, 844, 15, 32, "Item",ExpressionUUID->"44957540-6c80-403d-a201-e7d6d0e250ea",
  InitializationCell->True],
-Cell[29467, 637, 10288, 208, 1286, "Input",ExpressionUUID->"c3e748d7-81c0-4746-beec-0ca6ef7db3ce",
+Cell[41369, 885, 8561, 184, 1370, "Input",ExpressionUUID->"f5345bad-bae2-4e01-be18-d0ebe0111c25",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[39792, 850, 844, 15, 32, "Item",ExpressionUUID->"44957540-6c80-403d-a201-e7d6d0e250ea",
+Cell[49967, 1074, 672, 11, 32, "Item",ExpressionUUID->"b769cc7d-2f3f-4b68-8522-e238fd34e29a",
  InitializationCell->True],
-Cell[40639, 867, 8561, 184, 1370, "Input",ExpressionUUID->"f5345bad-bae2-4e01-be18-d0ebe0111c25",
+Cell[50642, 1087, 13775, 333, 1426, "Input",ExpressionUUID->"28f2bd49-8456-4bd7-80b7-11e17f18fb4b",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[49237, 1056, 672, 11, 32, "Item",ExpressionUUID->"b769cc7d-2f3f-4b68-8522-e238fd34e29a",
+Cell[64454, 1425, 616, 10, 32, "Item",ExpressionUUID->"ef02d43d-59f1-47e7-b220-4a3cbb4ccebd",
  InitializationCell->True],
-Cell[49912, 1069, 13775, 333, 1426, "Input",ExpressionUUID->"28f2bd49-8456-4bd7-80b7-11e17f18fb4b",
- InitializationCell->True]
-}, Open  ]],
-Cell[CellGroupData[{
-Cell[63724, 1407, 616, 10, 32, "Item",ExpressionUUID->"ef02d43d-59f1-47e7-b220-4a3cbb4ccebd",
- InitializationCell->True],
-Cell[64343, 1419, 12146, 240, 1391, "Input",ExpressionUUID->"66ee4e56-fd6a-454e-a12d-58ec728c9386",
+Cell[65073, 1437, 21236, 423, 2714, "Input",ExpressionUUID->"66ee4e56-fd6a-454e-a12d-58ec728c9386",
  InitializationCell->True]
 }, Open  ]]
 }
