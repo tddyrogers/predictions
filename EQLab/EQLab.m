@@ -101,8 +101,7 @@ q<0,R Log[(1-pi)/pc],
 q==0,0
 ];
 
-(*update rj: sbig-s can be negative, so use a theta function*)
-ri=ri*HeavisideTheta[smean+c*\[CapitalDelta]s-si]//ReplaceAll[HeavisideTheta[0]->0];
+
 
 AppendTo[r,ri];
 
