@@ -34,9 +34,33 @@ VARNAME={
 "nquestions"
 };
 SUPERARRAYNAME={
-"EXPERIMENT",
-"PLOTS"
+"EXPERIMENT",(*indices are:  iexperiment,iquestion*)
+"PLOTS",           (*indices are:  iexperiment,iquestion*)
+"CSURPRISAL",(*cumulative surprisals, indices are : iexperiment, iplayer,iquestion*)
+"CREWARD"          (*cumulative rewards, indices are : iexperiment, iplayer,iquestion*)
 };
+
+
+(* ::Input::Initialization:: *)
+index1=<| 
+"forecast"->1,
+"measurement"->2,
+"resolution"->3,
+"outcome"->4,
+"surprisal"->5,
+"reward"->6
+|>;
+
+index2=<| 
+"p"->1,
+"m"->2,
+"v"->3,
+"q"->4,
+"s"->5,
+"r"->6
+|>;
+INDEX=Join[index1,index2];
+Protect[index1,index2,INDEX]
 
 
 (* ::Input::Initialization:: *)
@@ -257,32 +281,7 @@ DefaultResolve[question_]:=Table[Random[]//Which[#<0.05,-question[[2]],True,ques
 
 
 
-SetDefaultFunctions[]:=Module[
-{},
-PREDICT=DefaultPredict;
-MEASURE=DefaultMeasure;
-RESOLVE=DefaultResolve;
 
-Unprotect[FunctionsAreInitizialed];
-FunctionsAreInitizialed=True;
-Protect[FunctionsAreInitizialed];
-
-]
-
-SetUserFunctions[]:=Module[
-{isprotected=FunctionsAreInitizialed//Attributes//MemberQ[#,Protected]&},
-
-(*Names["Global`UserPredict"];*)
-
-PREDICT=UserPredict;
-MEASURE=UserMeasure;
-RESOLVE=UserResolve;
-
-Unprotect[FunctionsAreInitizialed];
-FunctionsAreInitizialed=True;
-Protect[FunctionsAreInitizialed];
-
-]
 
 
 
@@ -326,6 +325,54 @@ marker1=Graphics[{Blue,Disk[]}];
 
 
 (* ::Input::Initialization:: *)
+getcumulative[list_]:=Module[
+{i,length=list//Length,cumulative},
+
+cumulative=ConstantArray[0,length];
+
+cumulative[[1]]=list[[1]];
+
+For[i=2,i<=length,i++,
+
+cumulative[[i]]=list[[i]]+cumulative[[i-1]]
+
+];
+cumulative
+]
+
+
+
+
+
+
+(* ::Input::Initialization:: *)
+SetDefaultFunctions[]:=Module[
+{},
+PREDICT=DefaultPredict;
+MEASURE=DefaultMeasure;
+RESOLVE=DefaultResolve;
+
+Unprotect[FunctionsAreInitizialed];
+FunctionsAreInitizialed=True;
+Protect[FunctionsAreInitizialed];
+
+]
+
+SetUserFunctions[]:=Module[
+{isprotected=FunctionsAreInitizialed//Attributes//MemberQ[#,Protected]&},
+
+
+
+PREDICT=UserPredict;
+MEASURE=UserMeasure;
+RESOLVE=UserResolve;
+
+Unprotect[FunctionsAreInitizialed];
+FunctionsAreInitizialed=True;
+Protect[FunctionsAreInitizialed];
+
+]
+
 
 RunExperiment[]:=Module[
 {experiment=blankexperiment[],iquestion},
@@ -343,25 +390,30 @@ For[iquestion=1,iquestion<=nquestions,iquestion++,
 askquestion[experiment]
 ];
 
+(*these to keep superarray sizes consistent*)
 PLOTS//Unprotect;
-EXPERIMENT//Unprotect;
-
 AppendTo[PLOTS,False];
-
-AppendTo[EXPERIMENT,experiment];
-
 PLOTS//Protect;
+
+CSURPRISAL//Unprotect;
+AppendTo[CSURPRISAL,False];
+CSURPRISAL//Protect;
+
+CREWARD//Unprotect;
+AppendTo[CREWARD,False];
+CREWARD//Protect;
+
+(*store experiment in superarray*)
+EXPERIMENT//Unprotect;
+AppendTo[EXPERIMENT,experiment];
 EXPERIMENT//Protect;
 
 ]
 
 
-
 MakePlots[iexperiment_]:=Module[
 {plots={},length=(EXPERIMENT//Length),cantdoplot},
-(*cond1=!TrueQ[length<iexperiment^2//Sqrt];
-cond2=(length\[Equal]0);
-cond3=(!IntegerQ[iexperiment]);*)
+
 
 cantdoplot=(
 TrueQ[length<iexperiment^2//Sqrt]||
@@ -381,17 +433,7 @@ plots={
 };
 
 
-(*AppendTo[plots,pPlot[iexperiment]];(*else*)
-AppendTo[plots,mPlot[iexperiment]];
-AppendTo[plots,vPlot[iexperiment]];
-AppendTo[plots,qPlot[iexperiment]];
-AppendTo[plots,sPlot[iexperiment]];
-AppendTo[plots,rPlot[iexperiment]];
-AppendTo[plots,sStatPlot[iexperiment]];*)
 
-(*length=(PLOTS//Length);
-
-While[length<iexperiment,  AppendTo[PLOTS,0]  ;length++];*)
 PLOTS//Unprotect;
 PLOTS[[iexperiment]]=plots;
 PLOTS//Protect;
@@ -432,14 +474,7 @@ grid=0,
 
 grid=Grid[PLOTS[[iexperiment]],Spacings->{2,3}](*else*)
 
-(*grid=Grid[(*else*)
-{
-{PLOTS[[iexperiment,1]], PLOTS[[iexperiment,2]],PLOTS[[iexperiment,3]]}, 
-{PLOTS[[iexperiment,4]],PLOTS[[iexperiment,5]],PLOTS[[iexperiment,6]]},
-{Nothing,PLOTS[[iexperiment,7]],Nothing}
-},
-Spacings\[Rule]{2,3}
-]*)
+
 ];
 grid
 ]
@@ -454,3 +489,24 @@ grid=0
 grid
 ]
 
+
+CalcCumulative[iexperiment_]:=Module[
+{S={},R={},CS={},CR={}},
+S=EXPERIMENT[[iexperiment,All,INDEX["s"]]]//Transpose;
+R=EXPERIMENT[[iexperiment,All,INDEX["r"]]]//Transpose;
+CS=getcumulative/@S;
+CR=getcumulative/@R;
+Unprotect[CSURPRISAL,CREWARD];
+CSURPRISAL[[iexperiment]]=CS;
+CREWARD[[iexperiment]]=CR;
+Protect[CSURPRISAL,CREWARD];
+]
+
+
+CalcCumulative[]:=Module[
+{length=CSURPRISAL//Length},
+If[length>0, 
+CalcCumulative[length],
+Print["No experiments present."];
+]
+]
