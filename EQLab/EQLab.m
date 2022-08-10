@@ -37,7 +37,8 @@ SUPERARRAYNAME={
 "EXPERIMENT",(*indices are:  iexperiment,iquestion*)
 "PLOTS",           (*indices are:  iexperiment,iquestion*)
 "CSURPRISAL",(*cumulative surprisals, indices are : iexperiment, iplayer,iquestion*)
-"CREWARD"          (*cumulative rewards, indices are : iexperiment, iplayer,iquestion*)
+"CREWARD"  ,        (*cumulative rewards, indices are : iexperiment, iplayer,iquestion*)
+"ASURPRISAL"          (*cumulative rewards, indices are : iexperiment, iplayer,iquestion*)
 };
 
 
@@ -61,6 +62,15 @@ index2=<|
 |>;
 INDEX=Join[index1,index2];
 Protect[index1,index2,INDEX]
+
+(*to search plots by key*)
+ASSOCIATIONPLOTS[iexp_]:=
+<|
+"p"->PLOTS[[iexp,1,1]],"m"->PLOTS[[iexp,1,2]],"v"->PLOTS[[iexp,1,3]],
+"q"->PLOTS[[iexp,2,1]],"s"->PLOTS[[iexp,2,2]],"r"->PLOTS[[iexp,2,3]],
+"sstat"->PLOTS[[iexp,3,1]],"savgj"->PLOTS[[iexp,3,2]],"rcumul"->PLOTS[[iexp,3,3]]
+|>;
+
 
 
 (* ::Input::Initialization:: *)
@@ -306,6 +316,15 @@ PLOTMARKERS->"OpenMarkers",
 PLOTRANGE->Full,
 LABELSTYLE->Directive[Black,Bold,Medium]
 };
+PLOTSTYLE3={
+ASPECTRATIO->5/8,
+IMAGESIZE->360,
+IMAGEPADDING->{{0, 20}, {0,20}},
+PLOTRANGEPADDING->Scaled[.1],
+PLOTMARKERS->{"OpenMarkers",Tiny},
+PLOTRANGE->Full,
+LABELSTYLE->Directive[Black,Bold,Medium]
+};
 
 pPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,1]][[All,i]],{i,1,npredictors}]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(p\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
 mPlot[iexperiment_]:=(EXPERIMENT[[iexperiment,All,2]]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(m\), \(\(\\\ \)\(j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
@@ -320,7 +339,14 @@ sPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,5]][[All,i]],{i,1,npredi
 rPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,6]][[All,i]],{i,1,npredictors}]//ListLogLogPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(r\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
 
 
-sStatPlot[iexperiment_]:=(Table[(Around[EXPERIMENT[[iexperiment,All,5]][[i]]//Mean,EXPERIMENT[[iexperiment,All,5]][[i]]//StandardDeviation]),{i,1,EXPERIMENT[[iexperiment,All,5]]//Length}]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->{marker1,0.016},PlotStyle->Directive[Red],PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(s\), \(\(\\\ \)\(j\)\)]\)"},LabelStyle->LABELSTYLE(*,Epilog\[Rule]{Directive[Red,Thick],Line[{{0,prob},{100,prob}}]}*)]&/.PLOTSTYLE1);
+sStatPlot[iexperiment_]:=(Table[(Around[EXPERIMENT[[iexperiment,All,5]][[i]]//Mean,EXPERIMENT[[iexperiment,All,5]][[i]]//StandardDeviation]),{i,1,EXPERIMENT[[iexperiment,All,5]]//Length}]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->{marker1,0.016},PlotStyle->Directive[Red],PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(s\), \(\(\\\ \)\(j\)\)]\)\[PlusMinus]\[CapitalDelta]s"},LabelStyle->LABELSTYLE(*,Epilog\[Rule]{Directive[Red,Thick],Line[{{0,prob},{100,prob}}]}*)]&/.PLOTSTYLE1);
+
+
+savgPlot[iexperiment_]:=(ASURPRISAL[[iexperiment]]//ListPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","<\!\(\*SubscriptBox[\(s\), \(i\)]\)\!\(\*SubscriptBox[\(>\), \(1 \[Rule] j\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE3);
+
+rcumPlot[iexperiment_]:=(CREWARD[[iexperiment]]//ListPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(r\), \(ij\)]\)(cumul.)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE3);
+
+
 marker1=Graphics[{Blue,Disk[]}];
 
 
@@ -338,6 +364,21 @@ cumulative[[i]]=list[[i]]+cumulative[[i-1]]
 
 ];
 cumulative
+]
+
+
+getaveragej[list_]:=Module[
+{j,length=list//Length,cumulative,averagej},
+
+cumulative=getcumulative[list];
+averagej=ConstantArray[0,length];
+
+For[j=1,j<=length,j++,
+
+averagej[[j]]=cumulative[[j]]/j;
+
+];
+averagej
 ]
 
 
@@ -374,6 +415,59 @@ Protect[FunctionsAreInitizialed];
 ]
 
 
+CalcCumulative[iexperiment_]:=Module[
+{S={},R={},CS={},CR={}},
+S=EXPERIMENT[[iexperiment,All,INDEX["s"]]]//Transpose;
+R=EXPERIMENT[[iexperiment,All,INDEX["r"]]]//Transpose;
+CS=getcumulative/@S;
+CR=getcumulative/@R;
+Unprotect[CSURPRISAL,CREWARD];
+CSURPRISAL[[iexperiment]]=CS;
+CREWARD[[iexperiment]]=CR;
+Protect[CSURPRISAL,CREWARD];
+]
+
+
+CalcCumulative[]:=Module[
+{length=CSURPRISAL//Length},
+If[length>0, 
+CalcCumulative[length],
+Print["No experiments present."];
+]
+]
+
+CalcAveragej[iexperiment_]:=Module[
+{S={},AS={}},
+S=EXPERIMENT[[iexperiment,All,INDEX["s"]]]//Transpose;
+AS=getaveragej/@S;
+Unprotect[ASURPRISAL];
+ASURPRISAL[[iexperiment]]=AS;
+Protect[ASURPRISAL];
+]
+
+
+CalcAveragej[]:=Module[
+{length=CSURPRISAL//Length},
+If[length>0, 
+CalcAveragej[length],
+Print["No experiments present."];
+]
+]
+
+CalcStat[iexperiment_]:=Module[
+{},
+CalcCumulative[iexperiment];
+CalcAveragej[iexperiment];
+]
+
+CalcStat[]:=Module[
+{},
+CalcCumulative[];
+CalcAveragej[];
+]
+
+
+
 RunExperiment[]:=Module[
 {experiment=blankexperiment[],iquestion},
 
@@ -391,23 +485,17 @@ askquestion[experiment]
 ];
 
 (*these to keep superarray sizes consistent*)
-PLOTS//Unprotect;
-AppendTo[PLOTS,False];
-PLOTS//Protect;
-
-CSURPRISAL//Unprotect;
-AppendTo[CSURPRISAL,False];
-CSURPRISAL//Protect;
-
-CREWARD//Unprotect;
-AppendTo[CREWARD,False];
-CREWARD//Protect;
+"Unprotect["<>#<>"]"&/@(SUPERARRAYNAME//DeleteCases["EXPERIMENT"])//ToExpression;
+"AppendTo["<>#<>",False]"&/@(SUPERARRAYNAME//DeleteCases["EXPERIMENT"])//ToExpression;
+"Protect["<>#<>"]"&/@(SUPERARRAYNAME//DeleteCases["EXPERIMENT"])//ToExpression;
 
 (*store experiment in superarray*)
 EXPERIMENT//Unprotect;
 AppendTo[EXPERIMENT,experiment];
 EXPERIMENT//Protect;
 
+(*calculate cumulative s,r and average s*)
+CalcStat[]
 ]
 
 
@@ -429,7 +517,7 @@ Print["Experiment i = ",iexperiment," no present."],(*then*)
 plots={
 {pPlot[iexperiment], mPlot[iexperiment],vPlot[iexperiment]}, 
 {qPlot[iexperiment],sPlot[iexperiment],rPlot[iexperiment]},
-{Nothing,sStatPlot[iexperiment],Nothing}
+{sStatPlot[iexperiment],savgPlot[iexperiment],rcumPlot[iexperiment]}
 };
 
 
@@ -489,8 +577,16 @@ grid=0
 grid
 ]
 
+(*warning: does not check if plot is present *)
+ShowPlots[iexp_,key_]:=Module[
+{output,failmessage="second argument must be one of: "},
+failmessage=failmessage<>(ASSOCIATIONPLOTS[1]//Normal//Part[#,All,1]&//ToString//StringReplace[{" "->"",","->"\",\"","{"->"{\"","}"->"\"}"}]);
 
-CalcCumulative[iexperiment_]:=Module[
+output=ASSOCIATIONPLOTS[iexp][key]/._Missing->failmessage//Show
+]
+
+
+(*CalcCumulative[iexperiment_]:=Module[
 {S={},R={},CS={},CR={}},
 S=EXPERIMENT[[iexperiment,All,INDEX["s"]]]//Transpose;
 R=EXPERIMENT[[iexperiment,All,INDEX["r"]]]//Transpose;
@@ -509,4 +605,4 @@ If[length>0,
 CalcCumulative[length],
 Print["No experiments present."];
 ]
-]
+]*)
