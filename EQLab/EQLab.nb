@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    117723,       2567]
-NotebookOptionsPosition[    113783,       2476]
-NotebookOutlinePosition[    114212,       2493]
-CellTagsIndexPosition[    114169,       2490]
+NotebookDataLength[    118303,       2579]
+NotebookOptionsPosition[    114363,       2488]
+NotebookOutlinePosition[    114792,       2505]
+CellTagsIndexPosition[    114749,       2502]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2052,13 +2052,16 @@ Cell[BoxData[{
        RowBox[{"EXPERIMENT", ",", "experiment"}], "]"}], ";", 
       "\[IndentingNewLine]", 
       RowBox[{"EXPERIMENT", "//", "Protect"}], ";", "\[IndentingNewLine]", 
-      "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"CalcStat", "[", "]"}], ";", 
       RowBox[{"(*", 
        RowBox[{
         RowBox[{"calculate", " ", "cumulative", " ", "s"}], ",", 
         RowBox[{"r", " ", "and", " ", "average", " ", "s"}]}], "*)"}], 
       "\[IndentingNewLine]", 
-      RowBox[{"CalcStat", "[", "]"}]}]}], "\[IndentingNewLine]", "]"}]}], 
+      RowBox[{"MakePlots", "[", "]"}]}]}], " ", 
+    RowBox[{"(*", 
+     RowBox[{"make", " ", "plots"}], "*)"}], "\[IndentingNewLine]", "]"}]}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -2255,8 +2258,16 @@ Cell[BoxData[{
       RowBox[{"output", ",", 
        RowBox[{
        "failmessage", "=", "\"\<second argument must be one of: \>\""}]}], 
-      "}"}], ",", "\[IndentingNewLine]", 
+      "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
      RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{"TrueQ", "[", 
+         RowBox[{"!", 
+          RowBox[{"PLOTS", "[", 
+           RowBox[{"[", "iexp", "]"}], "]"}]}], "]"}], ",", 
+        RowBox[{"MakePlots", "[", "iexp", "]"}], ",", "Nothing"}], "]"}], ";",
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"failmessage", "=", 
        RowBox[{"failmessage", "<>", 
         RowBox[{"(", 
@@ -2469,8 +2480,9 @@ Cell[BoxData[{
    3.8690780882069063`*^9, 3.869078097191875*^9}, {3.8690781973509407`*^9, 
    3.86907819884566*^9}, {3.869081261497303*^9, 3.8690812803525133`*^9}, {
    3.86908159247478*^9, 3.869081610336685*^9}, {3.869081944321417*^9, 
-   3.8690819459621964`*^9}, {3.8690823886170797`*^9, 
-   3.869082460385147*^9}},ExpressionUUID->"66ee4e56-fd6a-454e-a12d-\
+   3.8690819459621964`*^9}, {3.8690823886170797`*^9, 3.869082460385147*^9}, {
+   3.869082840265274*^9, 3.869082914888424*^9}, {3.869083269974249*^9, 
+   3.869083288559597*^9}},ExpressionUUID->"66ee4e56-fd6a-454e-a12d-\
 58ec728c9386"]
 }, Open  ]]
 },
@@ -2566,7 +2578,7 @@ Cell[72140, 1608, 10057, 172, 770, "Input",ExpressionUUID->"704097ed-24c8-4548-8
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[82246, 1786, 267, 5, 53, "Subtitle",ExpressionUUID->"580f3882-88f7-48ad-aec7-fda8e0c2418e"],
-Cell[82516, 1793, 31251, 680, 4814, "Input",ExpressionUUID->"66ee4e56-fd6a-454e-a12d-58ec728c9386",
+Cell[82516, 1793, 31831, 692, 4898, "Input",ExpressionUUID->"66ee4e56-fd6a-454e-a12d-58ec728c9386",
  InitializationCell->True]
 }, Open  ]]
 }

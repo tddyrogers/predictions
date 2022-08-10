@@ -494,8 +494,9 @@ EXPERIMENT//Unprotect;
 AppendTo[EXPERIMENT,experiment];
 EXPERIMENT//Protect;
 
-(*calculate cumulative s,r and average s*)
-CalcStat[]
+
+CalcStat[];(*calculate cumulative s,r and average s*)
+MakePlots[] (*make plots*)
 ]
 
 
@@ -580,6 +581,9 @@ grid
 (*warning: does not check if plot is present *)
 ShowPlots[iexp_,key_]:=Module[
 {output,failmessage="second argument must be one of: "},
+
+If[TrueQ[!PLOTS[[iexp]]],MakePlots[iexp],Nothing];
+
 failmessage=failmessage<>(ASSOCIATIONPLOTS[1]//Normal//Part[#,All,1]&//ToString//StringReplace[{" "->"",","->"\",\"","{"->"{\"","}"->"\"}"}]);
 
 output=ASSOCIATIONPLOTS[iexp][key];
