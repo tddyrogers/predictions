@@ -242,8 +242,8 @@ newquestion=newquestion//ReplacePart[6->r];
 askquestion[experiment_]:=Module[
 {newquestion=blankquestion[]},
 
-predict[experiment,newquestion];
 measure[newquestion];
+predict[experiment,newquestion];
 resolve[experiment,newquestion];
 outcome[newquestion];
 surprisal[newquestion];
