@@ -590,7 +590,9 @@ output=ASSOCIATIONPLOTS[iexp][key];
 
 If[Head[output]===Missing,
 Print[failmessage],
-output//Show
+output=Show[output,ImageSize->{750,500}];
+Export[".plot_temp.jpg",output];
+output=Import[".plot_temp.jpg"]
 ]
 
 
