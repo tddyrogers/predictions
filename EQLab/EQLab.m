@@ -321,7 +321,7 @@ ASPECTRATIO->5/8,
 IMAGESIZE->360,
 IMAGEPADDING->{{0, 20}, {0,20}},
 PLOTRANGEPADDING->Scaled[.1],
-PLOTMARKERS->{"OpenMarkers",Tiny},
+PLOTMARKERS->{Automatic, 0.006},
 PLOTRANGE->Full,
 LABELSTYLE->Directive[Black,Bold,Medium]
 };
