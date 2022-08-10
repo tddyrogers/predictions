@@ -582,7 +582,14 @@ ShowPlots[iexp_,key_]:=Module[
 {output,failmessage="second argument must be one of: "},
 failmessage=failmessage<>(ASSOCIATIONPLOTS[1]//Normal//Part[#,All,1]&//ToString//StringReplace[{" "->"",","->"\",\"","{"->"{\"","}"->"\"}"}]);
 
-output=ASSOCIATIONPLOTS[iexp][key]/._Missing->failmessage//Show
+output=ASSOCIATIONPLOTS[iexp][key];
+
+If[Head[output]===Missing,
+Print[failmessage],
+output//Show
+]
+
+
 ]
 
 
