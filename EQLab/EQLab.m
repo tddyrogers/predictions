@@ -20,7 +20,9 @@
 
 
 (* ::Input::Initialization:: *)
+Unprotect[FunctionsAreInitizialed];
 FunctionsAreInitizialed=False;
+Protect[FunctionsAreInitizialed];
 
 
 (* ::Input::Initialization:: *)
@@ -43,6 +45,7 @@ SUPERARRAYNAME={
 
 
 (* ::Input::Initialization:: *)
+Unprotect[index1,index2,INDEX]
 index1=<| 
 "forecast"->1,
 "measurement"->2,
@@ -91,6 +94,7 @@ InitSuperarrays[]:=Module[
 superarray="",user="",default=""},
 For[isuperarray=1,isuperarray<=isuperarraymax,isuperarray++,
 superarray=SUPERARRAYNAME[[isuperarray]];
+superarray<>"//Unprotect"//ToExpression;
 superarray<>"={}"//ToExpression;
 
 (*protect super arrays from user modification*)
@@ -204,7 +208,7 @@ SetAttributes[reward,HoldAll];
 
 predict[experiment_,newquestion_]:=Module[
 {p},
-p=PREDICT[experiment];
+p=PREDICT[experiment,newquestion];
 newquestion=newquestion//ReplacePart[1->p];
 ]
 
@@ -256,10 +260,11 @@ AppendTo[experiment,newquestion]
 
 
 (* ::Input::Initialization:: *)
+Unprotect[defaultforecastinit];
+defaultforecastinit=Table[Random[],{i,1,npredictors}];
+Protect[defaultforecastinit];
 
-defaultforecastinit=Table[Random[],{i,1,npredictors}];Protect[defaultforecastinit]
-
-DefaultPredict[exp_]:=Module[
+DefaultPredict[exp_,newquestion_]:=Module[
 {ipredictor,n=(exp//Length),\[Rho]new,RHOnew={}},(*internal variables*)
 
 For[ipredictor=1,ipredictor<=npredictors,ipredictor++,(*loop over users*)
@@ -267,7 +272,7 @@ For[ipredictor=1,ipredictor<=npredictors,ipredictor++,(*loop over users*)
 If[(*to execute commands that depend on the question number 'n+1' *)
 n==0,(*if*)
 
-\[Rho]new=defaultforecastinit[[ipredictor]],(*then*)
+\[Rho]new=defaultforecastinit[[ipredictor]];,(*then*)
 
 \[Rho]new=exp[[n,1,ipredictor]](*else*)
 
