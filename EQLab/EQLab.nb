@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    120657,       2630]
-NotebookOptionsPosition[    116714,       2539]
-NotebookOutlinePosition[    117143,       2556]
-CellTagsIndexPosition[    117100,       2553]
+NotebookDataLength[    120808,       2635]
+NotebookOptionsPosition[    116865,       2544]
+NotebookOutlinePosition[    117294,       2561]
+CellTagsIndexPosition[    117251,       2558]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -1247,32 +1247,35 @@ Cell[BoxData[{
        RowBox[{"Black", ",", "Bold", ",", "Medium"}], "]"}]}]}], 
     "\[IndentingNewLine]", "}"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{
-   RowBox[{"PLOTSTYLE3", "=", 
-    RowBox[{"{", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"ASPECTRATIO", "\[Rule]", 
-       RowBox[{"5", "/", "8"}]}], ",", "\[IndentingNewLine]", 
-      RowBox[{"IMAGESIZE", "\[Rule]", "360"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"IMAGEPADDING", "\[Rule]", 
-       RowBox[{"{", 
-        RowBox[{
-         RowBox[{"{", 
-          RowBox[{"0", ",", " ", "20"}], "}"}], ",", " ", 
-         RowBox[{"{", 
-          RowBox[{"0", ",", "20"}], "}"}]}], "}"}]}], ",", 
-      "\[IndentingNewLine]", 
-      RowBox[{"PLOTRANGEPADDING", "->", 
-       RowBox[{"Scaled", "[", ".1", "]"}]}], ",", "\[IndentingNewLine]", 
-      RowBox[{"PLOTMARKERS", "\[Rule]", 
-       RowBox[{"{", 
-        RowBox[{"Automatic", ",", " ", "0.006"}], "}"}]}], ",", 
-      "\[IndentingNewLine]", 
-      RowBox[{"PLOTRANGE", "\[Rule]", "Full"}], ",", "\[IndentingNewLine]", 
-      RowBox[{"LABELSTYLE", "\[Rule]", 
-       RowBox[{"Directive", "[", 
-        RowBox[{"Black", ",", "Bold", ",", "Medium"}], "]"}]}]}], 
-     "\[IndentingNewLine]", "}"}]}], ";"}], "\[IndentingNewLine]"}], "\n", 
+  RowBox[{"PLOTSTYLE3", "=", 
+   RowBox[{"{", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"ASPECTRATIO", "\[Rule]", 
+      RowBox[{"5", "/", "8"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"IMAGESIZE", "\[Rule]", "360"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"IMAGEPADDING", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"0", ",", " ", "20"}], "}"}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"0", ",", "20"}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PLOTRANGEPADDING", "->", 
+      RowBox[{"Scaled", "[", ".1", "]"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PLOTMARKERS", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"Automatic", ",", " ", "0.01"}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PLOTRANGE", "\[Rule]", "Full"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"LABELSTYLE", "\[Rule]", 
+      RowBox[{"Directive", "[", 
+       RowBox[{"Black", ",", "Bold", ",", "Medium"}], "]"}]}]}], 
+    "\[IndentingNewLine]", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PLOTTYPE", "=", "ListLogLinearPlot"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"PLOTTYPE", "=", "ListPlot"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
    RowBox[{"pPlot", "[", "iexperiment_", "]"}], ":=", 
@@ -1290,7 +1293,7 @@ Cell[BoxData[{
         RowBox[{"i", ",", "1", ",", "npredictors"}], "}"}]}], "]"}], "//", 
      RowBox[{
       RowBox[{
-       RowBox[{"ListLogLinearPlot", "[", 
+       RowBox[{"PLOTTYPE", "[", 
         RowBox[{"#", ",", 
          RowBox[{"AspectRatio", "\[Rule]", "ASPECTRATIO"}], ",", 
          RowBox[{"ImageSize", "\[Rule]", "IMAGESIZE"}], ",", 
@@ -1317,7 +1320,7 @@ Cell[BoxData[{
         RowBox[{"iexperiment", ",", "All", ",", "2"}], "]"}], "]"}], "//", 
       RowBox[{
        RowBox[{
-        RowBox[{"ListLogLinearPlot", "[", 
+        RowBox[{"PLOTTYPE", "[", 
          RowBox[{"#", ",", 
           RowBox[{"AspectRatio", "\[Rule]", "ASPECTRATIO"}], ",", 
           RowBox[{"ImageSize", "\[Rule]", "IMAGESIZE"}], ",", 
@@ -1352,7 +1355,7 @@ Cell[BoxData[{
          RowBox[{"i", ",", "1", ",", "npredictors"}], "}"}]}], "]"}], "//", 
       RowBox[{
        RowBox[{
-        RowBox[{"ListLogLinearPlot", "[", 
+        RowBox[{"PLOTTYPE", "[", 
          RowBox[{"#", ",", 
           RowBox[{"AspectRatio", "\[Rule]", "ASPECTRATIO"}], ",", 
           RowBox[{"ImageSize", "\[Rule]", "IMAGESIZE"}], ",", 
@@ -1380,7 +1383,7 @@ Cell[BoxData[{
         RowBox[{"iexperiment", ",", "All", ",", "4"}], "]"}], "]"}], "//", 
       RowBox[{
        RowBox[{
-        RowBox[{"ListLogLinearPlot", "[", 
+        RowBox[{"PLOTTYPE", "[", 
          RowBox[{"#", ",", 
           RowBox[{"AspectRatio", "\[Rule]", "ASPECTRATIO"}], ",", 
           RowBox[{"ImageSize", "\[Rule]", "IMAGESIZE"}], ",", 
@@ -1415,7 +1418,7 @@ Cell[BoxData[{
          RowBox[{"i", ",", "1", ",", "npredictors"}], "}"}]}], "]"}], "//", 
       RowBox[{
        RowBox[{
-        RowBox[{"ListLogLinearPlot", "[", 
+        RowBox[{"PLOTTYPE", "[", 
          RowBox[{"#", ",", 
           RowBox[{"AspectRatio", "\[Rule]", "ASPECTRATIO"}], ",", 
           RowBox[{"ImageSize", "\[Rule]", "IMAGESIZE"}], ",", 
@@ -1450,7 +1453,7 @@ Cell[BoxData[{
          RowBox[{"i", ",", "1", ",", "npredictors"}], "}"}]}], "]"}], "//", 
       RowBox[{
        RowBox[{
-        RowBox[{"ListLogLogPlot", "[", 
+        RowBox[{"PLOTTYPE", "[", 
          RowBox[{"#", ",", 
           RowBox[{"AspectRatio", "\[Rule]", "ASPECTRATIO"}], ",", 
           RowBox[{"ImageSize", "\[Rule]", "IMAGESIZE"}], ",", 
@@ -1502,7 +1505,7 @@ Cell[BoxData[{
             "Length"}]}], "}"}]}], "]"}], "//", 
       RowBox[{
        RowBox[{
-        RowBox[{"ListLogLinearPlot", "[", 
+        RowBox[{"PLOTTYPE", "[", 
          RowBox[{"#", ",", 
           RowBox[{"AspectRatio", "\[Rule]", "ASPECTRATIO"}], ",", 
           RowBox[{"ImageSize", "\[Rule]", "IMAGESIZE"}], ",", 
@@ -1621,7 +1624,9 @@ Cell[BoxData[{
    3.869142398711775*^9, 3.8691424110983133`*^9}, {3.869142541716708*^9, 
    3.869142547532073*^9}, {3.86914277292903*^9, 3.8691427735806704`*^9}, {
    3.869143006606934*^9, 3.869143008190713*^9}, {3.869143183188671*^9, 
-   3.869143183314065*^9}},ExpressionUUID->"28f2bd49-8456-4bd7-80b7-\
+   3.869143183314065*^9}, {3.870247645535522*^9, 3.870247645716412*^9}, {
+   3.870249154110961*^9, 
+   3.870249202029428*^9}},ExpressionUUID->"28f2bd49-8456-4bd7-80b7-\
 11e17f18fb4b"]
 }, Open  ]],
 
@@ -2617,19 +2622,19 @@ Cell[47434, 1028, 6817, 153, 866, "Input",ExpressionUUID->"f5345bad-bae2-4e01-be
 Cell[CellGroupData[{
 Cell[54288, 1186, 672, 11, 32, "Item",ExpressionUUID->"b769cc7d-2f3f-4b68-8522-e238fd34e29a",
  InitializationCell->True],
-Cell[54963, 1199, 18012, 425, 1900, "Input",ExpressionUUID->"28f2bd49-8456-4bd7-80b7-11e17f18fb4b",
+Cell[54963, 1199, 18163, 430, 1762, "Input",ExpressionUUID->"28f2bd49-8456-4bd7-80b7-11e17f18fb4b",
  InitializationCell->True]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[73012, 1629, 735, 12, 32, "Item",ExpressionUUID->"287d02c1-e584-4fa9-b23a-adace6221990",
+Cell[73163, 1634, 735, 12, 32, "Item",ExpressionUUID->"287d02c1-e584-4fa9-b23a-adace6221990",
  InitializationCell->True],
-Cell[73750, 1643, 10057, 172, 770, "Input",ExpressionUUID->"704097ed-24c8-4548-8b2d-0cf71dce3e8b",
+Cell[73901, 1648, 10057, 172, 770, "Input",ExpressionUUID->"704097ed-24c8-4548-8b2d-0cf71dce3e8b",
  InitializationCell->True]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[83856, 1821, 267, 5, 53, "Subtitle",ExpressionUUID->"580f3882-88f7-48ad-aec7-fda8e0c2418e"],
-Cell[84126, 1828, 32572, 708, 4940, "Input",ExpressionUUID->"66ee4e56-fd6a-454e-a12d-58ec728c9386",
+Cell[84007, 1826, 267, 5, 53, "Subtitle",ExpressionUUID->"580f3882-88f7-48ad-aec7-fda8e0c2418e"],
+Cell[84277, 1833, 32572, 708, 4940, "Input",ExpressionUUID->"66ee4e56-fd6a-454e-a12d-58ec728c9386",
  InitializationCell->True]
 }, Open  ]]
 }

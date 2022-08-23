@@ -326,25 +326,26 @@ ASPECTRATIO->5/8,
 IMAGESIZE->360,
 IMAGEPADDING->{{0, 20}, {0,20}},
 PLOTRANGEPADDING->Scaled[.1],
-PLOTMARKERS->{Automatic, 0.006},
+PLOTMARKERS->{Automatic, 0.01},
 PLOTRANGE->Full,
 LABELSTYLE->Directive[Black,Bold,Medium]
 };
+PLOTTYPE=ListLogLinearPlot;
+PLOTTYPE=ListPlot;
+pPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,1]][[All,i]],{i,1,npredictors}]//PLOTTYPE[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(p\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
+mPlot[iexperiment_]:=(EXPERIMENT[[iexperiment,All,2]]//PLOTTYPE[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(m\), \(\(\\\ \)\(j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
 
-pPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,1]][[All,i]],{i,1,npredictors}]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(p\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
-mPlot[iexperiment_]:=(EXPERIMENT[[iexperiment,All,2]]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(m\), \(\(\\\ \)\(j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
+vPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,3]][[All,i]],{i,1,npredictors}]//PLOTTYPE[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(v\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
 
-vPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,3]][[All,i]],{i,1,npredictors}]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(v\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
-
-qPlot[iexperiment_]:=(EXPERIMENT[[iexperiment,All,4]]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(q\), \(\(\\\ \)\(j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
-
-
-sPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,5]][[All,i]],{i,1,npredictors}]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(s\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
-
-rPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,6]][[All,i]],{i,1,npredictors}]//ListLogLogPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(r\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
+qPlot[iexperiment_]:=(EXPERIMENT[[iexperiment,All,4]]//PLOTTYPE[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(q\), \(\(\\\ \)\(j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
 
 
-sStatPlot[iexperiment_]:=(Table[(Around[EXPERIMENT[[iexperiment,All,5]][[i]]//Mean,EXPERIMENT[[iexperiment,All,5]][[i]]//StandardDeviation]),{i,1,EXPERIMENT[[iexperiment,All,5]]//Length}]//ListLogLinearPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->{marker1,0.016},PlotStyle->Directive[Red],PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(s\), \(\(\\\ \)\(j\)\)]\)\[PlusMinus]\[CapitalDelta]s"},LabelStyle->LABELSTYLE(*,Epilog\[Rule]{Directive[Red,Thick],Line[{{0,prob},{100,prob}}]}*)]&/.PLOTSTYLE1);
+sPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,5]][[All,i]],{i,1,npredictors}]//PLOTTYPE[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(s\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
+
+rPlot[iexperiment_]:=(Table[EXPERIMENT[[iexperiment,All,6]][[All,i]],{i,1,npredictors}]//PLOTTYPE[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(r\), \(\(\\\ \)\(i\\\ j\)\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE1);
+
+
+sStatPlot[iexperiment_]:=(Table[(Around[EXPERIMENT[[iexperiment,All,5]][[i]]//Mean,EXPERIMENT[[iexperiment,All,5]][[i]]//StandardDeviation]),{i,1,EXPERIMENT[[iexperiment,All,5]]//Length}]//PLOTTYPE[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->{marker1,0.016},PlotStyle->Directive[Red],PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(s\), \(\(\\\ \)\(j\)\)]\)\[PlusMinus]\[CapitalDelta]s"},LabelStyle->LABELSTYLE(*,Epilog\[Rule]{Directive[Red,Thick],Line[{{0,prob},{100,prob}}]}*)]&/.PLOTSTYLE1);
 
 
 savgPlot[iexperiment_]:=(ASURPRISAL[[iexperiment]]//ListPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","<\!\(\*SubscriptBox[\(s\), \(i\)]\)\!\(\*SubscriptBox[\(>\), \(1 \[Rule] j\)]\)"},LabelStyle->LABELSTYLE]&/.PLOTSTYLE3);
