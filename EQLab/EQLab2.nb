@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    142746,       3095]
-NotebookOptionsPosition[    138802,       3004]
-NotebookOutlinePosition[    139231,       3021]
-CellTagsIndexPosition[    139188,       3018]
+NotebookDataLength[    143467,       3109]
+NotebookOptionsPosition[    139523,       3018]
+NotebookOutlinePosition[    139952,       3035]
+CellTagsIndexPosition[    139909,       3032]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2494,15 +2494,27 @@ Cell[BoxData[{
           RowBox[{"DeleteCases", "[", "\"\<EXPERIMENT\>\"", "]"}]}], ")"}]}], 
        "//", "ToExpression"}], ";", "\[IndentingNewLine]", 
       "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+        RowBox[{"ask", " ", "always", " ", "one", " ", "question"}], ",", " ", 
+        RowBox[{"regardless", " ", "of", " ", "stop", " ", "condition"}]}], 
+       "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"askquestion", "[", "experiment", "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"calcstatrewards", "[", "experiment", "]"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"calcstatsurprisal", "[", "experiment", "]"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"For", "[", 
        RowBox[{
-        RowBox[{"iquestion", "=", "1"}], ",", 
+        RowBox[{"iquestion", "=", "2"}], ",", 
         RowBox[{"iquestion", "\[LessEqual]", "nquestions"}], ",", 
         RowBox[{"iquestion", "++"}], ",", "\[IndentingNewLine]", 
         RowBox[{"If", "[", 
          RowBox[{
-          RowBox[{"!", 
-           RowBox[{"STOP", "[", "]"}]}], ",", "\[IndentingNewLine]", 
+          RowBox[{"(", 
+           RowBox[{"!", 
+            RowBox[{"STOP", "[", "]"}]}], ")"}], ",", "\[IndentingNewLine]", 
           RowBox[{
            RowBox[{"askquestion", "[", "experiment", "]"}], ";", 
            "\[IndentingNewLine]", "\[IndentingNewLine]", 
@@ -2997,8 +3009,10 @@ Cell[BoxData[{
    3.871575414151722*^9}, {3.871575477496277*^9, 3.8715755077597227`*^9}, {
    3.8715755595427923`*^9, 3.871575573273137*^9}, {3.871575609046281*^9, 
    3.871575618145812*^9}, {3.8715756866492367`*^9, 3.871575705004609*^9}, {
-   3.871575816552209*^9, 
-   3.871575816693192*^9}},ExpressionUUID->"66ee4e56-fd6a-454e-a12d-\
+   3.871575816552209*^9, 3.871575816693192*^9}, {3.874666829247517*^9, 
+   3.8746668422233753`*^9}, {3.87466691342024*^9, 3.8746669138968563`*^9}, {
+   3.874666966983541*^9, 
+   3.874666994852047*^9}},ExpressionUUID->"66ee4e56-fd6a-454e-a12d-\
 58ec728c9386"]
 }, Open  ]]
 },
@@ -3094,7 +3108,7 @@ Cell[81093, 1783, 10057, 172, 770, "Input",ExpressionUUID->"704097ed-24c8-4548-8
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[91199, 1961, 267, 5, 53, "Subtitle",ExpressionUUID->"580f3882-88f7-48ad-aec7-fda8e0c2418e"],
-Cell[91469, 1968, 47317, 1033, 6662, "Input",ExpressionUUID->"66ee4e56-fd6a-454e-a12d-58ec728c9386",
+Cell[91469, 1968, 48038, 1047, 6767, "Input",ExpressionUUID->"66ee4e56-fd6a-454e-a12d-58ec728c9386",
  InitializationCell->True]
 }, Open  ]]
 }
