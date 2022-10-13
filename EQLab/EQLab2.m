@@ -589,8 +589,13 @@ Protect[FunctionsAreInitizialed]
 "AppendTo["<>#<>",{}]"&/@(SUPERARRAYNAME//DeleteCases["EXPERIMENT"])//ToExpression;
 "Protect["<>#<>"]"&/@(SUPERARRAYNAME//DeleteCases["EXPERIMENT"])//ToExpression;
 
-For[iquestion=1,iquestion<=nquestions,iquestion++,
-If[!STOP[],
+(*ask always one question, regardless of stop condition*)
+askquestion[experiment];
+calcstatrewards[experiment];
+calcstatsurprisal[experiment];
+
+For[iquestion=2,iquestion<=nquestions,iquestion++,
+If[(!STOP[]),
 askquestion[experiment];
 
 calcstatrewards[experiment];
