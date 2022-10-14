@@ -121,6 +121,8 @@ Init[];
 (* ::Input::Initialization:: *)
 Outcome[question_]:=question[[3]]//Mean//N//Sign;
 
+ObjectiveSurprisal[question_]:=Table[Which[NumericQ[question[[1,i]]]&&NumericQ[question[[2]]],Which[question[[2]]>0,-Log[question[[1,i]]],question[[2]]<0,-Log[1-question[[1,i]]],question[[2]]==0,0],True,I],{i,1,question[[1]]//Length}];
+
 Surprisal[question_]:=Table[Which[NumericQ[question[[1,i]]]&&NumericQ[question[[4]]],Which[question[[4]]>0,-Log[question[[1,i]]],question[[4]]<0,-Log[1-question[[1,i]]],question[[4]]==0,0],True,I],{i,1,question[[1]]//Length}];
 Reward[question_]:=Module[
 {R,pi,si,pc,c=1,q,V,smean,\[CapitalDelta]s,ri,ipredictor,r={}(*List of rewards *)},
