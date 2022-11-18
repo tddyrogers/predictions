@@ -85,7 +85,7 @@ var=VARNAME[[ivar]];
 user=VARNAME[[ivar]]<>"USER";
 default=VARNAME[[ivar]]<>"DEFAULT";
 userdefined=(user//ToExpression//NumberQ);
-Which[userdefined,var<>"="<>user;Print["user:"<>var<>"=",user//ToExpression],True,var<>"="<>default]//ToExpression;
+Which[userdefined,var<>"="<>user,True,var<>"="<>default]//ToExpression;
 ]
 ]
 
