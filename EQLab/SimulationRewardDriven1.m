@@ -60,14 +60,14 @@ g==-2,predictivepowerm2[xrandom,meas]
 RandomWalk[]:=Module[
 {rewards,maxreward,avgrewards,leadingexpert,stepplus={},stepminus={}},
 
-
+RandomSeed[];
 stepplus=Table[
 Which[(*if \[Nu]1<h, proceed with random walk upwards*)
 Random[]<=randomwalkh[[i]],1,
 True,0
 ],
 {i,1,beliefin\[Alpha]//Length}];
-
+RandomSeed[];
 stepminus=Table[
 Which[(*if \[Nu]2<h, proceed with random walk downwards*)
 Random[]<=randomwalkh[[i]],-1,
@@ -109,6 +109,7 @@ Largerewards=(maxreward+avgrewards)/2;
 
 leadingexpert=Position[rewards,maxreward]//Flatten//Part[#,1]&;
 
+RandomSeed[];
 
 changebelief=Table[
 TrueQ[
@@ -175,6 +176,8 @@ UserResolve[exp_,newquestion_]:=Module[
 objectiveSij=ObjectiveSurprisal[newquestion];
 objectiveSjavg=Mean[objectiveSij];
 wj=newquestion[[2]];
+
+RandomSeed[];
 
 resolutions=Table[
 Which[

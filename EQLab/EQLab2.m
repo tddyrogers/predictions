@@ -40,7 +40,8 @@ SUPERARRAYNAME={
 "PLOTS",           (*indices are:  iexperiment,iquestion*)
 "CSURPRISAL",(*cumulative surprisals, indices are : iexperiment, iplayer,iquestion*)
 "CREWARD"  ,        (*cumulative rewards, indices are : iexperiment, iplayer,iquestion*)
-"ASURPRISAL"          (*cumulative rewards, indices are : iexperiment, iplayer,iquestion*)
+"ASURPRISAL",         (*average surprisal from question1 to current, indices are : iexperiment, iplayer,iquestion*)
+"AREWARD"         (*average surprisal from question1 to current, indices are : iexperiment, iplayer,iquestion*)
 };
 
 
@@ -71,7 +72,8 @@ ASSOCIATIONPLOTS[iexp_]:=
 <|
 "p"->PLOTS[[iexp,1,1]],"m"->PLOTS[[iexp,1,2]],"v"->PLOTS[[iexp,1,3]],
 "q"->PLOTS[[iexp,2,1]],"s"->PLOTS[[iexp,2,2]],"r"->PLOTS[[iexp,2,3]],
-"sstat"->PLOTS[[iexp,3,1]],"savgj"->PLOTS[[iexp,3,2]],"rcumul"->PLOTS[[iexp,3,3]]
+"sstat"->PLOTS[[iexp,3,1]],"savgj"->PLOTS[[iexp,3,2]],"scumul"->PLOTS[[iexp,3,3]],
+(*"sstat"\[Rule]PLOTS[[iexp,3,1]],*)"ravgj"->PLOTS[[iexp,4,2]],"rcumul"->PLOTS[[iexp,4,3]]
 |>;
 
 
@@ -367,6 +369,18 @@ sStatPlot[iexperiment_]:=(Table[(Around[EXPERIMENT[[iexperiment,All,5]][[i]]//Me
 
 savgPlot[iexperiment_]:=(ASURPRISAL[[iexperiment]]//ListPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","<\!\(\*SubscriptBox[\(s\), \(i\)]\)\!\(\*SubscriptBox[\(>\), \(1 \[Rule] j\)]\)"},LabelStyle->LABELSTYLE,PlotLegends->PLOTLEGENDS]&/.PLOTSTYLE3);
 
+scumPlot[iexperiment_]:=Module[
+{plot1,plot2,meansurprisal},
+
+meansurprisal=Mean/@(CSURPRISAL[[iexperiment]]//Transpose);
+plot1=(CSURPRISAL[[iexperiment]]//ListPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(s\), \(ij\)]\)(cumul.)"},LabelStyle->LABELSTYLE,PlotLegends->PLOTLEGENDS]&/.PLOTSTYLE3);
+
+plot2=(meansurprisal//ListPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->marker2[],PlotRange->PLOTRANGE,AxesLabel->{"j","\!\(\*SubscriptBox[\(s\), \(ij\)]\)(cumul.)"},LabelStyle->LABELSTYLE,PlotLegends->Placed[PointLegend[{Black},{"Mean"}],Above]]&/.PLOTSTYLE3);
+
+Show[plot1,plot2,LegendPosition->{0,0}]
+
+]
+
 rcumPlot[iexperiment_]:=Module[
 {plot1,plot2,meanrewards},
 
@@ -379,13 +393,15 @@ Show[plot1,plot2,LegendPosition->{0,0}]
 
 ]
 
+ravgPlot[iexperiment_]:=(AREWARD[[iexperiment]]//ListPlot[#,AspectRatio->ASPECTRATIO,ImageSize->IMAGESIZE,ImagePadding->IMAGEPADDING,PlotRangePadding->PLOTRANGEPADDING,PlotMarkers->PLOTMARKERS,PlotRange->PLOTRANGE,AxesLabel->{"j","<\!\(\*SubscriptBox[\(r\), \(i\)]\)\!\(\*SubscriptBox[\(>\), \(1 \[Rule] j\)]\)"},LabelStyle->LABELSTYLE,PlotLegends->PLOTLEGENDS]&/.PLOTSTYLE3);
+
 
 marker1=Graphics[{Blue,Disk[]}];
 marker2[in_:Black,out_:Black,size_:7]:=Graphics[{in,EdgeForm[{AbsoluteThickness[2],out}],Disk[]},PlotRangePadding->0,ImageSize->size]
 
 
 (* ::Input::Initialization:: *)
-getcumulative[list_]:=Module[
+getcumulative[list_]:=Module[(*gives a list*)
 {i,length=list//Length,cumulative},
 
 cumulative=ConstantArray[0,length];
@@ -398,6 +414,14 @@ cumulative[[i]]=list[[i]]+cumulative[[i-1]]
 
 ];
 cumulative
+]
+
+getcumulativeRange[list_,start_,end_]:=Module[(*gives just a number*)
+{newlist,cumulative},
+
+newlist=list[[start;;end]];
+
+cumulative=Plus@@newlist
 ]
 
 
@@ -413,6 +437,15 @@ averagej[[j]]=cumulative[[j]]/j;
 
 ];
 averagej
+]
+
+getaverageRange[list_,start_,end_]:=Module[
+
+{cumulative,size=end-start+1,avg},
+
+cumulative=getcumulativeRange[list,start,end];
+
+avg=cumulative/size
 ]
 
 
@@ -504,7 +537,7 @@ CalcAveragej[];
 *)
 
 calcstatrewards[experiment_]:=Module[
-{currentpos=experiment//Length,cumulrewards=CREWARD[[-1]]//Transpose},
+{currentpos=experiment//Length,cumulrewards=CREWARD[[-1]]//Transpose,avgrewardsj=AREWARD[[-1]]//Transpose},
 (*Print["currentpos=",currentpos];
 Print["CREWARD[[-1]]=",cumulrewards];
 Print["tobe appended: ",experiment[[-1,INDEX["r"]]]];*)
@@ -516,6 +549,15 @@ True,Nothing
 Unprotect[CREWARD];
 CREWARD[[-1]]=cumulrewards//Transpose;
 Protect[CREWARD];
+
+Which[(*avgj rewards*)
+currentpos>=1, AppendTo[avgrewardsj,cumulrewards[[-1]]/currentpos],
+True,Nothing
+];
+Unprotect[AREWARD];
+AREWARD[[-1]]=avgrewardsj//Transpose;
+Protect[AREWARD];
+
 ]
 
 calcstatsurprisal[experiment_]:=Module[
@@ -639,7 +681,8 @@ Print["Experiment i = ",iexperiment," no present."],(*then*)
 plots={
 {pPlot[iexperiment], mPlot[iexperiment],vPlot[iexperiment]}, 
 {qPlot[iexperiment],sPlot[iexperiment],rPlot[iexperiment]},
-{sStatPlot[iexperiment],savgPlot[iexperiment],rcumPlot[iexperiment]}
+{sStatPlot[iexperiment],savgPlot[iexperiment],scumPlot[iexperiment]},
+{rPlot[iexperiment],ravgPlot[iexperiment],rcumPlot[iexperiment]}
 };
 
 
