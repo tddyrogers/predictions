@@ -26,7 +26,7 @@ Protect[FunctionsAreInitizialed];
 
 
 (* ::Input::Initialization:: *)
-npredictorsDEFAULT=4;
+npredictorsDEFAULT=5;
 nquestionsDEFAULT=20;
 
 

@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     69224,       1409]
-NotebookOptionsPosition[     67182,       1367]
-NotebookOutlinePosition[     67580,       1383]
-CellTagsIndexPosition[     67537,       1380]
+NotebookDataLength[    107898,       2286]
+NotebookOptionsPosition[    105817,       2242]
+NotebookOutlinePosition[    106215,       2258]
+CellTagsIndexPosition[    106172,       2255]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -620,7 +620,7 @@ Cell[BoxData[{
    3.884777232571394*^9}, {3.884777724812434*^9, 3.884777853520123*^9}, {
    3.8847780760147533`*^9, 3.884778109467876*^9}, {3.8847783114636383`*^9, 
    3.884778316370758*^9}, {3.884778572231614*^9, 3.884778572600271*^9}},
- CellLabel->"In[1]:=",ExpressionUUID->"c87f32fc-de2d-4417-9182-56c21142e143"],
+ CellLabel->"In[21]:=",ExpressionUUID->"c87f32fc-de2d-4417-9182-56c21142e143"],
 
 Cell[CellGroupData[{
 
@@ -635,10 +635,12 @@ Cell[BoxData[
   "\[Nu] values = ", {1., 1.588235294117647, 2.6666666666666665`, 
    5.285714285714286, 21.}],
   Editable->False]], "Print",
- CellChangeTimes->{3.884778319063963*^9, 3.884778731661399*^9},
+ CellChangeTimes->{
+  3.8847796511150427`*^9, {3.8847797475168123`*^9, 3.884779747677649*^9}, {
+   3.884780163180814*^9, 3.8847801633749104`*^9}},
  CellLabel->
   "During evaluation of \
-In[1]:=",ExpressionUUID->"da383334-d044-4ad9-8533-db8c8df8bee1"],
+In[21]:=",ExpressionUUID->"e9dd6928-2ccb-4b43-bd0e-226b79437ec7"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -651,10 +653,12 @@ Cell[BoxData[
   "\[Nu] values = ", {1., 1.588235294117647, 2.6666666666666665`, 
    5.285714285714286, 21.}],
   Editable->False]], "Print",
- CellChangeTimes->{3.884778319063963*^9, 3.884778731702487*^9},
+ CellChangeTimes->{
+  3.8847796511150427`*^9, {3.8847797475168123`*^9, 3.884779747677649*^9}, {
+   3.884780163180814*^9, 3.8847801633998747`*^9}},
  CellLabel->
   "During evaluation of \
-In[1]:=",ExpressionUUID->"6032f1a6-09fb-4609-bc57-830b0cdb85ba"]
+In[21]:=",ExpressionUUID->"0cd09c62-90d2-4b17-bf8c-8cd8755a642e"]
 }, Open  ]]
 }, Open  ]],
 
@@ -732,14 +736,15 @@ Cell[BoxData[
       RowBox[{"0.99", ",", "npredictorsUSER"}], "]"}]}], ";"}], 
    "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"aMIN", "=", "0.01"}], ";", 
-    RowBox[{"aMAX", "=", "0.05"}], ";", 
-    RowBox[{"(*", 
-     RowBox[{
-     "generate", " ", "random", " ", "numbres", " ", "in", " ", "this", " ", 
-      "range"}], "*)"}], "\[IndentingNewLine]", 
-    RowBox[{"bMIN", "=", "0.01"}], ";", 
-    RowBox[{"bMAX", "=", "0.05"}], ";", 
+    RowBox[{"aMIN", "=", "1"}], ";", 
+    RowBox[{"aMAX", "=", "5"}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{
+    "generate", " ", "random", " ", "numbres", " ", "in", " ", "this", " ", 
+     "range"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"bMIN", "=", "0.0"}], ";", 
+    RowBox[{"bMAX", "=", "10"}], ";", 
     RowBox[{"(*", 
      RowBox[{
      "generate", " ", "random", " ", "numbres", " ", "in", " ", "this", " ", 
@@ -974,8 +979,8 @@ Cell[BoxData[
    3.884768636579006*^9, {3.884769168054343*^9, 3.88476919470306*^9}, {
    3.884775518338603*^9, 3.884775758640801*^9}, {3.884778462912746*^9, 
    3.8847784742605762`*^9}, 3.88477856794821*^9, {3.884778650302247*^9, 
-   3.884778671788357*^9}, {3.88477903634723*^9, 3.884779039510531*^9}},
- CellLabel->"In[32]:=",ExpressionUUID->"5084991f-fe4d-4255-ab6e-a18828e83ef9"],
+   3.884778671788357*^9}, {3.884779632871682*^9, 3.884779643707699*^9}},
+ CellLabel->"In[21]:=",ExpressionUUID->"5084991f-fe4d-4255-ab6e-a18828e83ef9"],
 
 Cell[BoxData[""], "Input",
  CellChangeTimes->{{3.8844228027501*^9, 3.88442281079487*^9}},
@@ -1010,7 +1015,9 @@ intermediate steps. \[LineSeparator]",
  StyleBox["WARNING:",
   FontWeight->"Bold"],
  " Change the \[OpenCurlyDoubleQuote]id\[CloseCurlyDoubleQuote] each \
-simulation so that previous work does not get overwritten.    \[LineSeparator]"
+simulation so that previous work does not get overwritten. Results are   \
+stored in a subdirectory named after the value of  \[OpenCurlyQuote]id\
+\[CloseCurlyQuote]. \[LineSeparator]"
 }], "ItemNumbered",
  CellChangeTimes->{{3.877850460084672*^9, 3.877850484491872*^9}, 
    3.8778507074971046`*^9, {3.877851635915229*^9, 3.8778521053165083`*^9}, {
@@ -1018,7 +1025,7 @@ simulation so that previous work does not get overwritten.    \[LineSeparator]"
    3.877852238894256*^9}, {3.87785234053251*^9, 3.87785237937574*^9}, {
    3.8778524254326267`*^9, 3.877852490737755*^9}, {3.877852574684461*^9, 
    3.877852813907189*^9}, {3.884679885606824*^9, 3.8846799925386457`*^9}, 
-   3.884775869306761*^9},
+   3.884775869306761*^9, {3.884779476889175*^9, 3.884779532906451*^9}},
  FontSize->18,ExpressionUUID->"26a66a8f-bf9d-44b2-9b1d-55fd7e55c934"],
 
 Cell[CellGroupData[{
@@ -1027,7 +1034,9 @@ Cell[BoxData[
  RowBox[{"\[IndentingNewLine]", 
   RowBox[{
    RowBox[{
-    RowBox[{"id", "=", "\"\<a-0.01-0.2_b-0.01-0.5\>\""}], ";"}], 
+    RowBox[{"id", "=", "\"\<someid\>\""}], ";"}], 
+   RowBox[{"(*", 
+    RowBox[{"change", " ", "each", " ", "simulation"}], "*)"}], " ", 
    "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"tempplot", "=", "0"}], ";"}], "\[IndentingNewLine]", 
@@ -1283,16 +1292,13 @@ Cell[BoxData[
    3.884768959793446*^9}, {3.884769153023821*^9, 3.8847691631128893`*^9}, {
    3.884774605598104*^9, 3.884774605893983*^9}, {3.8847754374093122`*^9, 
    3.884775437525832*^9}, {3.884776025542616*^9, 3.884776031734774*^9}, {
-   3.884778689757575*^9, 3.884778721827396*^9}},
- CellLabel->"In[35]:=",ExpressionUUID->"3d1a2fa4-57ff-427e-a6de-a8df13e1b746"],
+   3.884778689757575*^9, 3.884778721827396*^9}, {3.8847794406026707`*^9, 
+   3.8847794641364202`*^9}, {3.884779539119026*^9, 3.884779546848662*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"3d1a2fa4-57ff-427e-a6de-a8df13e1b746"],
 
 Cell[BoxData["$Aborted"], "Output",
- CellChangeTimes->{3.884779005308031*^9, 3.8847795799771843`*^9},
- CellLabel->"Out[38]=",ExpressionUUID->"3cfe636c-7d9e-4e1b-96d9-3f989d4a1302"],
-
-Cell[BoxData["$Aborted"], "Output",
- CellChangeTimes->{3.884779005308031*^9, 3.884779582387195*^9},
- CellLabel->"Out[39]=",ExpressionUUID->"5bdb1a46-9859-4fa2-93cb-4688f99eb941"],
+ CellChangeTimes->{3.884779709932723*^9},
+ CellLabel->"Out[28]=",ExpressionUUID->"36d7bd30-504d-4b1b-8322-f20d9537b8a5"],
 
 Cell[BoxData[
  InterpretationBox[
@@ -1321,14 +1327,10 @@ Cell[BoxData[
    Style[0, Bold, Large, 
     RGBColor[0, 0, 1]]],
   Editable->False]], "Print",
- CellChangeTimes->{3.8847790075899973`*^9, 3.884779582390026*^9},
+ CellChangeTimes->{3.884779710186343*^9},
  CellLabel->
   "During evaluation of \
-In[35]:=",ExpressionUUID->"ac0352bd-643e-4e9c-b219-40f57f3b6744"],
-
-Cell[BoxData["$Aborted"], "Output",
- CellChangeTimes->{3.884779005308031*^9, 3.8847795826604567`*^9},
- CellLabel->"Out[41]=",ExpressionUUID->"07f5e5db-25ad-4a0f-b4fc-2324b8ca2682"]
+In[25]:=",ExpressionUUID->"39d9275e-89c1-470a-92ae-016cf88d6154"]
 }, Open  ]]
 }, Open  ]],
 
@@ -1356,13 +1358,886 @@ string that should match a previously used value of \[OpenCurlyQuote]id\
    3.884778514160364*^9, 3.884778531140603*^9}},
  FontSize->18,ExpressionUUID->"f233e232-64d3-418f-be5e-5f9b0d13d1d6"],
 
-Cell[BoxData[
- RowBox[{"LoadSimulation", "[", "\"\<simulation_2\>\"", "]"}]], "Input",
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ID", "=", "\"\<someid\>\""}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"LoadSimulation", "[", "ID", "]"}]}], "Input",
  CellChangeTimes->{{3.884775309377616*^9, 3.8847753149092197`*^9}, {
   3.884778275181938*^9, 3.8847782892567253`*^9}, {3.8847783292689247`*^9, 
-  3.884778329358268*^9}},
+  3.884778329358268*^9}, {3.884779554657559*^9, 3.884779556436616*^9}, {
+  3.8847797152158327`*^9, 3.884779718144334*^9}, {3.884779917188169*^9, 
+  3.884779929677827*^9}},
+ CellLabel->"In[41]:=",ExpressionUUID->"013cc205-0bc4-4946-9edd-03d2d3349be0"],
+
+Cell[BoxData["\<\"dinit = {4, 3, 2, 1, 0, -1, -2, -3, -4, 4, 3, 2, 1, 0, -1, \
+-2, -3, -4, 0, 0}\\nhinit = {0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, \
+0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, 0.99, \
+0.99}\\nnquestions = 2000\\nnexperiments = 500\\nnpredictors = \
+20\\nRTHRESHOLD = 4.04\\nR0 = 50\\nB0 = 0.7\\n######## predictive power \
+function genereted by calling: 'BuildPredictivePowerFunction[4,8]'\\ndMAX = 4\
+\\ndSTEPS = 8\\ndSTEPSIZE = 1\\nforecastavgMAX = 0.954545\\nPowerValues = \
+{1., 1.58824, 2.66667, 5.28571, 21.}\\nforecastavg = {0.0454545, 0.159091, \
+0.272727, 0.386364, 0.5, 0.613636, 0.727273, 0.840909, 0.954545}\"\>"], \
+"Print",
+ CellChangeTimes->{3.884779718994277*^9, 3.8847797595698147`*^9, 
+  3.884779931679491*^9, 3.8847801713139153`*^9},
  CellLabel->
-  "In[211]:=",ExpressionUUID->"013cc205-0bc4-4946-9edd-03d2d3349be0"]
+  "During evaluation of \
+In[41]:=",ExpressionUUID->"af64604c-2514-452c-b214-6ae24aafaef5"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[295^Rational[1, 2], 17.175564037317667`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.368417, 0.506779, 0.709798], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{9.42616, 2.30166}}, {{9.42616, 
+      2.30166}}}]}, 
+    {RGBColor[0.880722, 0.611041, 0.142051], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[355^Rational[1, 2], 18.841443681416774`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.880722, 0.611041, 0.142051], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{9.00793, 4.59072}}, {{9.00793, 
+      4.59072}}}]}, 
+    {RGBColor[0.560181, 0.691569, 0.194885], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[345^Rational[1, 2], 18.57417562100671],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.560181, 0.691569, 0.194885], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{8.21016, 3.4}}, {{8.21016, 3.4}}}]}, 
+    {RGBColor[0.922526, 0.385626, 0.209179], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[8 5^Rational[1, 2], 17.88854381999832],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.922526, 0.385626, 0.209179], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{5.31712, 3.96176}}, {{5.31712, 
+      3.96176}}}]}, 
+    {RGBColor[0.528488, 0.470624, 0.701351], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[330^Rational[1, 2], 18.16590212458495],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.528488, 0.470624, 0.701351], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{9.32654, 4.62698}}, {{9.32654, 
+      4.62698}}}]}, 
+    {RGBColor[0.772079, 0.431554, 0.102387], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[5 13^Rational[1, 2], 18.027756377319946`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.772079, 0.431554, 0.102387], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{7.08211, 2.27305}}, {{7.08211, 
+      2.27305}}}]}, 
+    {RGBColor[0.363898, 0.618501, 0.782349], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[5 7^Rational[1, 2], 13.228756555322953`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.363898, 0.618501, 0.782349], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{2.49848, 4.41634}}, {{2.49848, 
+      4.41634}}}]}, 
+    {RGBColor[1, 0.75, 0], PointSize[0.012833333333333334`], Thickness[Large],
+      GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[
+           0., 0.1763006526677175, 1.], AbsoluteThickness[1]}], 
+           DiskBox[{0, 0}]},
+          ImageSize->NCache[310^Rational[1, 2], 17.60681686165901],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[1, 0.75, 0], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{1.28107, 3.44027}}, {{1.28107, 
+      3.44027}}}]}, 
+    {RGBColor[0.647624, 0.37816, 0.614037], PointSize[0.012833333333333334`], 
+     Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[310^Rational[1, 2], 17.60681686165901],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.647624, 0.37816, 0.614037], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{5.96804, 1.37081}}, {{5.96804, 
+      1.37081}}}]}, 
+    {RGBColor[0.571589, 0.586483, 0.], PointSize[0.012833333333333334`], 
+     Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[3 10^Rational[1, 2], 9.486832980505138],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.571589, 0.586483, 0.], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{3.11092, 1.36161}}, {{3.11092, 
+      1.36161}}}]}, 
+    {RGBColor[0.915, 0.3325, 0.2125], PointSize[0.012833333333333334`], 
+     Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[6 10^Rational[1, 2], 18.973665961010276`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.915, 0.3325, 0.2125], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{8.16468, 4.75222}}, {{8.16468, 
+      4.75222}}}]}, 
+    {RGBColor[0.40082222609352647`, 0.5220066643438841, 0.85], PointSize[
+     0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[10 3^Rational[1, 2], 17.32050807568877],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.40082222609352647`, 0.5220066643438841, 0.85], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{4.64088, 1.09091}}, {{4.64088, 
+      1.09091}}}]}, 
+    {RGBColor[0.9728288904374106, 0.621644452187053, 0.07336199581899142], 
+     PointSize[0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[5 13^Rational[1, 2], 18.027756377319946`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[
+           0.9728288904374106, 0.621644452187053, 0.07336199581899142], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{5.9669, 2.77205}}, {{5.9669, 
+      2.77205}}}]}, 
+    {RGBColor[0.736782672705901, 0.358, 0.5030266573755369], PointSize[
+     0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[355^Rational[1, 2], 18.841443681416774`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.736782672705901, 0.358, 0.5030266573755369], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{7.97894, 3.71501}}, {{7.97894, 
+      3.71501}}}]}, 
+    {RGBColor[0.28026441037696703`, 0.715, 0.4292089322474965], PointSize[
+     0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[2 85^Rational[1, 2], 18.439088914585774`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.28026441037696703`, 0.715, 0.4292089322474965], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{7.51973, 4.79752}}, {{7.51973, 
+      4.79752}}}]}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[230^Rational[1, 2], 15.165750888103101`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.368417, 0.506779, 0.709798], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{6.93624, 1.9596}}, {{6.93624, 
+      1.9596}}}]}, 
+    {RGBColor[0.880722, 0.611041, 0.142051], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[330^Rational[1, 2], 18.16590212458495],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.880722, 0.611041, 0.142051], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{8.90069, 3.11827}}, {{8.90069, 
+      3.11827}}}]}, 
+    {RGBColor[0.560181, 0.691569, 0.194885], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[5 10^Rational[1, 2], 15.811388300841898`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.560181, 0.691569, 0.194885], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{4.31685, 4.93025}}, {{4.31685, 
+      4.93025}}}]}, 
+    {RGBColor[0.922526, 0.385626, 0.209179], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[285^Rational[1, 2], 16.881943016134134`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.922526, 0.385626, 0.209179], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{7.85082, 1.4959}}, {{7.85082, 
+      1.4959}}}]}, 
+    {RGBColor[0.528488, 0.470624, 0.701351], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[7 5^Rational[1, 2], 15.652475842498529`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.528488, 0.470624, 0.701351], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{6.57815, 4.91591}}, {{6.57815, 
+      4.91591}}}]}, 
+    {RGBColor[0.772079, 0.431554, 0.102387], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[230^Rational[1, 2], 15.165750888103101`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.772079, 0.431554, 0.102387], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{4.84479, 3.11071}}, {{4.84479, 
+      3.11071}}}]}, 
+    {RGBColor[0.363898, 0.618501, 0.782349], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[2 95^Rational[1, 2], 19.493588689617926`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.363898, 0.618501, 0.782349], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{9.07003, 4.60213}}, {{9.07003, 
+      4.60213}}}]}, 
+    {RGBColor[1, 0.75, 0], PointSize[0.012833333333333334`], Thickness[Large],
+      GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[5 13^Rational[1, 2], 18.027756377319946`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[1, 0.75, 0], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{9.26131, 2.65798}}, {{9.26131, 
+      2.65798}}}]}, 
+    {RGBColor[0.647624, 0.37816, 0.614037], PointSize[0.012833333333333334`], 
+     Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[345^Rational[1, 2], 18.57417562100671],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.647624, 0.37816, 0.614037], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{8.12286, 4.80658}}, {{8.12286, 
+      4.80658}}}]}, 
+    {RGBColor[0.571589, 0.586483, 0.], PointSize[0.012833333333333334`], 
+     Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[330^Rational[1, 2], 18.16590212458495],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.571589, 0.586483, 0.], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{7.98933, 4.68408}}, {{7.98933, 
+      4.68408}}}]}, 
+    {RGBColor[0.915, 0.3325, 0.2125], PointSize[0.012833333333333334`], 
+     Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[170^Rational[1, 2], 13.038404810405298`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.915, 0.3325, 0.2125], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{2.49855, 1.84198}}, {{2.49855, 
+      1.84198}}}]}, 
+    {RGBColor[0.40082222609352647`, 0.5220066643438841, 0.85], PointSize[
+     0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[
+           0., 0.1763006526677175, 1.], AbsoluteThickness[1]}], 
+           DiskBox[{0, 0}]},
+          ImageSize->NCache[10^Rational[1, 2], 3.1622776601683795`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.40082222609352647`, 0.5220066643438841, 0.85], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{2.46151, 2.02092}}, {{2.46151, 
+      2.02092}}}]}, 
+    {RGBColor[0.9728288904374106, 0.621644452187053, 0.07336199581899142], 
+     PointSize[0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[
+           0., 0.1763006526677175, 1.], AbsoluteThickness[1]}], 
+           DiskBox[{0, 0}]},
+          ImageSize->NCache[85^Rational[1, 2], 9.219544457292887],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[
+           0.9728288904374106, 0.621644452187053, 0.07336199581899142], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{2.33544, 2.66028}}, {{2.33544, 
+      2.66028}}}]}, 
+    {RGBColor[0.736782672705901, 0.358, 0.5030266573755369], PointSize[
+     0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[
+           0., 0.1763006526677175, 1.], AbsoluteThickness[1]}], 
+           DiskBox[{0, 0}]},
+          ImageSize->5,
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.736782672705901, 0.358, 0.5030266573755369], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{1.86919, 2.07279}}, {{1.86919, 
+      2.07279}}}]}, 
+    {RGBColor[0.28026441037696703`, 0.715, 0.4292089322474965], PointSize[
+     0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[
+           0., 0.1763006526677175, 1.], AbsoluteThickness[1]}], 
+           DiskBox[{0, 0}]},
+          ImageSize->NCache[3 5^Rational[1, 2], 6.708203932499369],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.28026441037696703`, 0.715, 0.4292089322474965], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{2.11159, 1.05615}}, {{2.11159, 
+      1.05615}}}]}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[5 13^Rational[1, 2], 18.027756377319946`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.368417, 0.506779, 0.709798], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{8.74864, 3.28307}}, {{8.74864, 
+      3.28307}}}]}, 
+    {RGBColor[0.880722, 0.611041, 0.142051], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[10 3^Rational[1, 2], 17.32050807568877],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.880722, 0.611041, 0.142051], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{7.39946, 1.33449}}, {{7.39946, 
+      1.33449}}}]}, 
+    {RGBColor[0.560181, 0.691569, 0.194885], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[7 5^Rational[1, 2], 15.652475842498529`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.560181, 0.691569, 0.194885], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{3.95434, 3.64708}}, {{3.95434, 
+      3.64708}}}]}, 
+    {RGBColor[0.922526, 0.385626, 0.209179], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[285^Rational[1, 2], 16.881943016134134`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.922526, 0.385626, 0.209179], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{3.21212, 4.9639}}, {{3.21212, 
+      4.9639}}}]}, 
+    {RGBColor[0.528488, 0.470624, 0.701351], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[
+           0., 0.1763006526677175, 1.], AbsoluteThickness[1]}], 
+           DiskBox[{0, 0}]},
+          ImageSize->15,
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.528488, 0.470624, 0.701351], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{0.692494, 2.04698}}, {{0.692494, 
+      2.04698}}}]}, 
+    {RGBColor[0.772079, 0.431554, 0.102387], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[230^Rational[1, 2], 15.165750888103101`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.772079, 0.431554, 0.102387], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{7.92713, 2.28783}}, {{7.92713, 
+      2.28783}}}]}, 
+    {RGBColor[0.363898, 0.618501, 0.782349], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[3 10^Rational[1, 2], 9.486832980505138],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.363898, 0.618501, 0.782349], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{2.1528, 4.65191}}, {{2.1528, 
+      4.65191}}}]}, 
+    {RGBColor[1, 0.75, 0], PointSize[0.012833333333333334`], Thickness[Large],
+      GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[
+           0., 0.1763006526677175, 1.], AbsoluteThickness[1]}], 
+           DiskBox[{0, 0}]},
+          ImageSize->NCache[5 10^Rational[1, 2], 15.811388300841898`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[1, 0.75, 0], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{0.903423, 2.87977}}, {{0.903423, 
+      2.87977}}}]}, 
+    {RGBColor[0.647624, 0.37816, 0.614037], PointSize[0.012833333333333334`], 
+     Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[8 5^Rational[1, 2], 17.88854381999832],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.647624, 0.37816, 0.614037], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{7.86084, 1.08032}}, {{7.86084, 
+      1.08032}}}]}, 
+    {RGBColor[0.571589, 0.586483, 0.], PointSize[0.012833333333333334`], 
+     Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[295^Rational[1, 2], 17.175564037317667`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.571589, 0.586483, 0.], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{7.63776, 4.15714}}, {{7.63776, 
+      4.15714}}}]}, 
+    {RGBColor[0.915, 0.3325, 0.2125], PointSize[0.012833333333333334`], 
+     Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[330^Rational[1, 2], 18.16590212458495],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.915, 0.3325, 0.2125], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{3.12727, 3.42089}}, {{3.12727, 
+      3.42089}}}]}, 
+    {RGBColor[0.40082222609352647`, 0.5220066643438841, 0.85], PointSize[
+     0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[2 70^Rational[1, 2], 16.73320053068151],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.40082222609352647`, 0.5220066643438841, 0.85], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{5.65523, 3.07939}}, {{5.65523, 
+      3.07939}}}]}, 
+    {RGBColor[0.9728288904374106, 0.621644452187053, 0.07336199581899142], 
+     PointSize[0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[
+           0., 0.1763006526677175, 1.], AbsoluteThickness[1]}], 
+           DiskBox[{0, 0}]},
+          ImageSize->NCache[3 35^Rational[1, 2], 17.74823934929885],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[
+           0.9728288904374106, 0.621644452187053, 0.07336199581899142], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{1.05574, 2.06468}}, {{1.05574, 
+      2.06468}}}]}, 
+    {RGBColor[0.736782672705901, 0.358, 0.5030266573755369], PointSize[
+     0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[295^Rational[1, 2], 17.175564037317667`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.736782672705901, 0.358, 0.5030266573755369], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{3.80295, 3.4136}}, {{3.80295, 
+      3.4136}}}]}, 
+    {RGBColor[0.28026441037696703`, 0.715, 0.4292089322474965], PointSize[
+     0.012833333333333334`], Thickness[Large], 
+     GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[
+           0., 0.1763006526677175, 1.], AbsoluteThickness[1]}], 
+           DiskBox[{0, 0}]},
+          ImageSize->NCache[10^Rational[1, 2], 3.1622776601683795`],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.28026441037696703`, 0.715, 0.4292089322474965], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{1.72338, 3.9873}}, {{1.72338, 
+      3.9873}}}]}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      Thickness[Large], GeometricTransformationBox[InsetBox[
+       FormBox[
+        StyleBox[
+         GraphicsBox[
+          {GrayLevel[0], Opacity[0], EdgeForm[{RGBColor[1., 0., 0.], 
+           AbsoluteThickness[1]}], DiskBox[{0, 0}]},
+          ImageSize->NCache[8 5^Rational[1, 2], 17.88854381999832],
+          PlotRangePadding->0],
+         StripOnInput->False,
+         GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+           PointSize[0.012833333333333334`], 
+           RGBColor[0.368417, 0.506779, 0.709798], 
+           AbsoluteThickness[1.6], 
+           Thickness[Large]]}],
+        TraditionalForm], {0., 0.}], {{{8.44847, 3.0173}}, {{8.44847, 
+      3.0173}}}]}}, {{}, {}}},
+  AspectRatio->0.9,
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0.5105426250000001, 0},
+  DisplayFunction->Identity,
+  Frame->{{True, True}, {True, True}},
+  FrameLabel->{{
+     FormBox[
+      StyleBox["\"a\"", Bold, Large, StripOnInput -> False], TraditionalForm],
+      None}, {
+     FormBox[
+      StyleBox["\"b\"", Bold, Large, StripOnInput -> False], TraditionalForm],
+      None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImageMargins->25,
+  ImageSize->500,
+  LabelStyle->Directive[Bold, 16],
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox["\"someid: pts1 = 46,  pts2 = 47\"", TraditionalForm],
+  PlotRange->{{0.5105426250000001, 9.42616}, {0, 4.9639}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.884779719145294*^9, 3.884779759902728*^9, 
+  3.884779931814776*^9, 3.884780171676546*^9},
+ CellLabel->"Out[42]=",ExpressionUUID->"d7765458-ae3e-422f-b039-a31dc7091991"]
+}, Open  ]]
 }, Open  ]]
 },
 WindowSize->{1239, 610},
@@ -1383,33 +2258,35 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 25812, 600, 2485, "Input",ExpressionUUID->"c87f32fc-de2d-4417-9182-56c21142e143",
+Cell[580, 22, 25813, 600, 2485, "Input",ExpressionUUID->"c87f32fc-de2d-4417-9182-56c21142e143",
  InitializationCell->True],
 Cell[CellGroupData[{
-Cell[26417, 626, 555, 14, 24, "Print",ExpressionUUID->"da383334-d044-4ad9-8533-db8c8df8bee1"],
-Cell[26975, 642, 555, 14, 24, "Print",ExpressionUUID->"6032f1a6-09fb-4609-bc57-830b0cdb85ba"]
+Cell[26418, 626, 639, 16, 24, "Print",ExpressionUUID->"e9dd6928-2ccb-4b43-bd0e-226b79437ec7"],
+Cell[27060, 644, 639, 16, 24, "Print",ExpressionUUID->"0cd09c62-90d2-4b17-bf8c-8cd8755a642e"]
 }, Open  ]]
 }, Open  ]],
-Cell[27557, 660, 154, 3, 30, "Input",ExpressionUUID->"00f56ea2-2f97-426d-97b9-a081b6eb41d0"],
+Cell[27726, 664, 154, 3, 30, "Input",ExpressionUUID->"00f56ea2-2f97-426d-97b9-a081b6eb41d0"],
 Cell[CellGroupData[{
-Cell[27736, 667, 1559, 28, 251, "ItemNumbered",ExpressionUUID->"cd8e440e-a8ee-4820-930f-09a4aec19670"],
-Cell[29298, 697, 347, 6, 30, "Input",ExpressionUUID->"722ddb37-011e-462d-bdb9-dc081dff38eb"],
-Cell[29648, 705, 18437, 272, 199, "Input",ExpressionUUID->"5084991f-fe4d-4255-ab6e-a18828e83ef9"],
-Cell[48088, 979, 172, 3, 30, "Input",ExpressionUUID->"13052928-958b-4774-af63-253a368b6571"]
+Cell[27905, 671, 1559, 28, 251, "ItemNumbered",ExpressionUUID->"cd8e440e-a8ee-4820-930f-09a4aec19670"],
+Cell[29467, 701, 347, 6, 30, "Input",ExpressionUUID->"722ddb37-011e-462d-bdb9-dc081dff38eb"],
+Cell[29817, 709, 18439, 273, 199, "Input",ExpressionUUID->"5084991f-fe4d-4255-ab6e-a18828e83ef9"],
+Cell[48259, 984, 172, 3, 30, "Input",ExpressionUUID->"13052928-958b-4774-af63-253a368b6571"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[48297, 987, 1569, 34, 179, "ItemNumbered",ExpressionUUID->"26a66a8f-bf9d-44b2-9b1d-55fd7e55c934"],
+Cell[48468, 992, 1720, 36, 203, "ItemNumbered",ExpressionUUID->"26a66a8f-bf9d-44b2-9b1d-55fd7e55c934"],
 Cell[CellGroupData[{
-Cell[49891, 1025, 13985, 261, 787, "Input",ExpressionUUID->"3d1a2fa4-57ff-427e-a6de-a8df13e1b746"],
-Cell[63879, 1288, 180, 2, 34, "Output",ExpressionUUID->"3cfe636c-7d9e-4e1b-96d9-3f989d4a1302"],
-Cell[64062, 1292, 178, 2, 34, "Output",ExpressionUUID->"5bdb1a46-9859-4fa2-93cb-4688f99eb941"],
-Cell[64243, 1296, 985, 30, 33, "Print",ExpressionUUID->"ac0352bd-643e-4e9c-b219-40f57f3b6744"],
-Cell[65231, 1328, 180, 2, 34, "Output",ExpressionUUID->"07f5e5db-25ad-4a0f-b4fc-2324b8ca2682"]
+Cell[50213, 1032, 14158, 264, 787, "Input",ExpressionUUID->"3d1a2fa4-57ff-427e-a6de-a8df13e1b746"],
+Cell[64374, 1298, 156, 2, 34, "Output",ExpressionUUID->"36d7bd30-504d-4b1b-8322-f20d9537b8a5"],
+Cell[64533, 1302, 961, 30, 33, "Print",ExpressionUUID->"39d9275e-89c1-470a-92ae-016cf88d6154"]
 }, Open  ]]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[65460, 1336, 1364, 20, 107, "ItemNumbered",ExpressionUUID->"f233e232-64d3-418f-be5e-5f9b0d13d1d6"],
-Cell[66827, 1358, 339, 6, 30, "Input",ExpressionUUID->"013cc205-0bc4-4946-9edd-03d2d3349be0"]
+Cell[65543, 1338, 1364, 20, 107, "ItemNumbered",ExpressionUUID->"f233e232-64d3-418f-be5e-5f9b0d13d1d6"],
+Cell[CellGroupData[{
+Cell[66932, 1362, 547, 9, 52, "Input",ExpressionUUID->"013cc205-0bc4-4946-9edd-03d2d3349be0"],
+Cell[67482, 1373, 899, 14, 291, "Print",ExpressionUUID->"af64604c-2514-452c-b214-6ae24aafaef5"],
+Cell[68384, 1389, 37405, 849, 576, "Output",ExpressionUUID->"d7765458-ae3e-422f-b039-a31dc7091991"]
+}, Open  ]]
 }, Open  ]]
 }
 ]

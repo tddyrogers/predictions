@@ -26,9 +26,12 @@ Unprotect[npredictors];
 
 
 (* ::Input::Initialization:: *)
+
 SUPERARRAYNAME=(Join[SUPERARRAYNAME,{"BELIEF"}]//DeleteDuplicates);
+(*ArraysNamesSimRewardDriven={"BiasAffPair","BeliefFinal"};*)
 ConstNamesSimRewardDriven={"PredictivePower"};
-VarNamesSimRewardDriven={"beliefin\[Alpha]","affinity","bias","randomwalkh"};
+(*VarNamesSimRewardDriven={"beliefin\[Alpha]","affinity","bias","randomwalkh"};*)
+
 
 
 
@@ -51,12 +54,15 @@ g==-1,predictivepowerm1[xrandom,meas],
 g==-2,predictivepowerm2[xrandom,meas]
 ]
 
-
-BuildPredictivePowerFunction[dmax_:2,dsteps_:4]:=Module[
+Unprotect[INFOPREDICTIVEPOWER];
+INFOPREDICTIVEPOWER="";
+Protect[INFOPREDICTIVEPOWER];
+BuildPredictivePowerFunction[dmax_:4,dsteps_:8]:=Module[
 {forecastavgMAX,forecastavgNeutral,
 dValues,\[Nu]Values,
 predictivepowerPositived,
-predictivepowerNegatived
+predictivepowerNegatived,
+info=""
 },
 
 (*power for best predictive power 1-x^\[Nu]*)
@@ -79,7 +85,23 @@ dValues=Join[-dValues[[2;;-1]],dValues]//Sort;
 
 predictivepowerPositived=Table[ToString[dValues[[dsteps/2+i]]]<>"->(1-#^("<>ToString[\[Nu]Values[[i]]//N]<>")&)",{i,1,\[Nu]Values//Length}];
 predictivepowerNegatived=Table[ToString[dValues[[i]]]<>"->(#^("<>ToString[(\[Nu]Values//Drop[#,1]&//Reverse)[[i]]//N]<>")&)",{i,1,dsteps/2}];
-predictivepowerd=Association@@ToExpression/@Join[predictivepowerNegatived,predictivepowerPositived]
+predictivepowerd=Association@@ToExpression/@Join[predictivepowerNegatived,predictivepowerPositived];
+
+(*for info files*)
+info=info<>"######## predictive power function genereted by calling: "<>"'BuildPredictivePowerFunction["<>ToString[dmax]<>","<>ToString[dsteps]<>"]'\n";
+info=info<>"dMAX = "<>ToString[dMAX]<>"\n";
+info=info<>"dSTEPS = "<>ToString[dSTEPS]<>"\n";
+info=info<>"dSTEPSIZE = "<>ToString[dSTEPSIZE]<>"\n";
+info=info<>"forecastavgMAX = "<>ToString[forecastavgMAX//N]<>"\n";
+info=info<>"PowerValues = "<>ToString[\[Nu]Values//N]<>"\n";
+info=info<>"forecastavg = "<>ToString[
+Join[
+(1-Range[forecastavgNeutral,forecastavgMAX,(forecastavgMAX-forecastavgNeutral)/(dsteps/2)])//Reverse,
+Range[forecastavgNeutral,forecastavgMAX,(forecastavgMAX-forecastavgNeutral)/(dsteps/2)]
+]//DeleteDuplicates//N
+]<>"\n";
+Unprotect[INFOPREDICTIVEPOWER];INFOPREDICTIVEPOWER=info;Protect[INFOPREDICTIVEPOWER];
+
 ]
 
 predictivepower[xrandom_,meas_,d_]:=Which[meas==1,predictivepowerd[d][xrandom],meas==-1,1-predictivepowerd[d][xrandom]]
