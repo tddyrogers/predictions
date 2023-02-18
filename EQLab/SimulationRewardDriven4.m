@@ -27,7 +27,7 @@ Unprotect[npredictors];
 
 (* ::Input::Initialization:: *)
 
-SUPERARRAYNAME=(Join[SUPERARRAYNAME,{"BELIEF"}]//DeleteDuplicates);
+(*SUPERARRAYNAME=(Join[SUPERARRAYNAME,{"BELIEF"}]//DeleteDuplicates);*)
 (*ArraysNamesSimRewardDriven={"BiasAffPair","BeliefFinal"};*)
 ConstNamesSimRewardDriven={"PredictivePower"};
 (*VarNamesSimRewardDriven={"beliefin\[Alpha]","affinity","bias","randomwalkh"};*)
@@ -291,6 +291,7 @@ BeliefCurrent={};
 
 ProbabilityPlus=0.5;
 Init[];
+Unprotect[BELIEF];BELIEF={};Protect[BELIEF];
 (*constant*)
 Unprotect/@ConstNamesSimRewardDriven;
 PredictivePower=Table["\"E"<>ToString[i]<>"\"\[Rule](predictivepower[#1,#2,beliefin\[Alpha][["<>ToString[i]<>"]]]&)",{i,1,npredictors}]//ToExpression//Apply[Association];
@@ -318,8 +319,8 @@ StoreBeliefCurrent[]:=Module[
 {index=EXPERIMENT//Length},
 
 Unprotect[BELIEF];
-(*AppendTo[BELIEF,BeliefCurrent];*)
-BELIEF[[index]]=BeliefCurrent;
+AppendTo[BELIEF,BeliefCurrent];
+(*BELIEF[[index]]=BeliefCurrent;*)
 Protect[BELIEF];
 
 ]
