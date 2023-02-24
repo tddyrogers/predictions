@@ -166,9 +166,12 @@ maxreward=Max[rewards];
 avgrewards=Mean[rewards];
 rjtotal=Plus@@(exp[[All,INDEX["r"]]][[-1]]);
 
-x=1/2;y=1/2;(*OLD*)
+x=1/2;y=1/2;(*OLD and new*)
 
 Largerewards=x * avgrewards+y*maxreward;
+
+If[Largerewards!=0,
+
 
 r0=R0;(*new*)
 
@@ -195,8 +198,11 @@ changebelief[[i]],beliefin\[Alpha][[i]]+dSTEPSIZE * Sign[  beliefin\[Alpha][[lea
 True,beliefin\[Alpha][[i]]
 ],
 {i,1,beliefin\[Alpha]//Length}
-];
+],
+Print["skipping question "<>ToString[CREWARD[[-1,All]]//Transpose//Length]<>"with 0 cumulative <rewards> and rewards_max"],
+Print["****skipping question "<>ToString[CREWARD[[-1,All]]//Transpose//Length]<>"with 0 cumulative <rewards> and rewards_max. Largereawards=  ",Largerewards,",  crew=",CREWARD[[-1,All,-1]]]
 
+]
 
 ];
 
@@ -331,23 +337,43 @@ PREVIOUSTRUE=False;
 NSTABLE=4;(*baseline value*)
 RTHRESHOLD=4.04;(*20 players , dmax=4, unit steps gives <rtot> = 2.02. Here using double *)
 UserStop[]:=Module[
-{condition1,out},
+{condition1,difflengthCsurprisal,wastedquestion=False,out},
 
+(*check first if this is a "wasted" question: q=0 => s={0,0,0,...,0}=> r={0,0,0,...,0}*)
+wastedquestion=Which[
+(CSURPRISAL[[-1,1]]//Length)==1,
+And[
+TrueQ[(CSURPRISAL[[-1,All,-1]]//DeleteDuplicates//Length)==1],
+TrueQ[(CSURPRISAL[[-1,All,-1]]//DeleteDuplicates//Part[#,1]&)==0]
+],
+True,
+And[
+TrueQ[(CSURPRISAL[[-1,All,-1]]-CSURPRISAL[[-1,All,-2]]//DeleteDuplicates//Length)==1],
+TrueQ[(CSURPRISAL[[-1,All,-1]]-CSURPRISAL[[-1,All,-2]]//DeleteDuplicates//Part[#,1]&)==0]
+]
+];
+
+
+(*Print["crewards length=",CREWARD[[-1,1]]//Length];
+Print["csurprisal length=",CSURPRISAL[[-1,1]]//Length];
+*)
 condition1=And[Length[CREWARD[[-1,1]]]>=NSTABLE,(CREWARD[[-1,All,-1]]-CREWARD[[-1,All,-2]]//Apply[Plus])<RTHRESHOLD];
-
+If[TrueQ[wastedquestion],Nothing,
 If[CONSECUTIVETRUECOUNT<NSTABLE,
 If[
 !TrueQ[condition1],
-CONSECUTIVETRUECOUNT=0;PREVIOUSTRUE=False;
-(*Print["cond1=",condition1,"previous=",PREVIOUSTRUE,"CONSECUTIVETRUECOUNT=",CONSECUTIVETRUECOUNT]*),
+CONSECUTIVETRUECOUNT=0;PREVIOUSTRUE=False,
 If[
 !PREVIOUSTRUE,
-CONSECUTIVETRUECOUNT=1;PREVIOUSTRUE=True;(*Print["cond1=",condition1,"previous=",PREVIOUSTRUE,"CONSECUTIVETRUECOUNT=",CONSECUTIVETRUECOUNT]*),
-CONSECUTIVETRUECOUNT++(*;Print["cond1=",condition1,"previous=",PREVIOUSTRUE,"CONSECUTIVETRUECOUNT=",CONSECUTIVETRUECOUNT]*)
+CONSECUTIVETRUECOUNT=1;PREVIOUSTRUE=True,
+CONSECUTIVETRUECOUNT++
 ]
 ],
 Nothing
+]
 ];
+
+
 out=And[condition1,CONSECUTIVETRUECOUNT>=NSTABLE];
 (*Print["out=",out];*)
 out
