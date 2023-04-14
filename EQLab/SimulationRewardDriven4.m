@@ -159,6 +159,8 @@ True,beliefin\[Alpha][[i]]
 (* ::Input::Initialization:: *)
 
 R0=50;(*20 experts, dmax=4 unit steps, ==> <rtot> = 100. Here using half that.*)
+LARGEREWARDSX=1/2
+LARGEREWARDSY=1/2; 
 UpdateBelievein\[Alpha]Affinity[exp_]:=Module[
 {rewards,maxreward,avgrewards,Largerewards,r0,rjtotal,leadingexpert,changebelief={},beliefin\[Alpha]TEMP,it,x=1,y=0},
 rewards=CREWARD[[-1,All,-1]];
@@ -166,7 +168,7 @@ maxreward=Max[rewards];
 avgrewards=Mean[rewards];
 rjtotal=Plus@@(exp[[All,INDEX["r"]]][[-1]]);
 
-x=1/2;y=1/2;(*OLD and new*)
+x=LARGEREWARDSX;y=LARGEREWARDSY;(*OLD and new*)
 
 Largerewards=x * avgrewards+y*maxreward;
 
