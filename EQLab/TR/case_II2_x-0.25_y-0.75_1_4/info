@@ -1,0 +1,21 @@
+dinit = {4, 4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4, -4}
+hinit = {0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01, 0.01}
+nquestions = 1000
+nexperiments = 600
+npredictors = 20
+RTHRESHOLD = 4.04
+R0 = 50
+LARGEREWARDSX = 1
+-
+4
+LARGEREWARDSY = 3
+-
+4
+B0 = 0.7
+######## predictive power function genereted by calling: 'BuildPredictivePowerFunction[4,8]'
+dMAX = 4
+dSTEPS = 8
+dSTEPSIZE = 1
+forecastavgMAX = 0.954545
+PowerValues = {1., 1.58824, 2.66667, 5.28571, 21.}
+forecastavg = {0.0454545, 0.159091, 0.272727, 0.386364, 0.5, 0.613636, 0.727273, 0.840909, 0.954545}
